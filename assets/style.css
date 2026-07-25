@@ -1,0 +1,553 @@
+/* =======================================================
+   Google Font
+======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    font-family:'Inter',sans-serif;
+}
+
+/* =======================================================
+   Body
+======================================================= */
+
+body{
+
+    margin:0;
+
+    background:#F5F7FB;
+
+}
+
+/* =======================================================
+   Navbar
+======================================================= */
+
+.navbar {
+
+    min-height: 82px;
+
+    background: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px 40px;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,.07);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 999;
+
+}
+
+/* =======================================================
+   Brand
+======================================================= */
+
+.brand-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+}
+
+.logo-icon{
+
+    font-size:38px;
+
+    margin-right:18px;
+
+}
+
+.logo-title {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    color: #1E293B;
+
+}
+
+.logo-subtitle {
+
+    margin-top: 2px;
+
+    margin-bottom: 0;
+
+    color: #64748B;
+
+    font-size: 12px;
+
+    line-height: 1.2;
+
+}
+
+/* =======================================================
+   Navigation
+======================================================= */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+.nav-link {
+
+    text-decoration: none;
+
+    color: #475569;
+
+    font-weight: 600;
+
+    font-size: 15px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    transition: .25s;
+
+}
+
+.nav-link:hover{
+
+    background:#EEF4FF;
+
+    color:#2563EB;
+
+}
+
+/* =======================================================
+   Page
+======================================================= */
+
+.page{
+
+    padding:40px;
+
+}
+
+.page-title{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#0F172A;
+
+    margin-bottom:5px;
+
+}
+
+.page-subtitle{
+
+    color:#64748B;
+
+    margin-bottom:35px;
+
+}
+
+/* =======================================================
+   Cards
+======================================================= */
+
+.dashboard-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+
+    border:none;
+
+    transition:.25s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.kpi-card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+
+    transition:.25s;
+
+}
+
+.kpi-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.kpi-value{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-top:12px;
+
+    color:#111827;
+
+}
+
+.kpi-title{
+
+    color:#64748B;
+
+    font-weight:600;
+
+}
+
+/* =======================================================
+   Filter Panel
+======================================================= */
+
+label{
+
+    font-weight:600;
+
+    color:#334155;
+
+    margin-bottom:8px;
+
+}
+
+.Select-control{
+
+    border-radius:12px !important;
+
+}
+
+.rc-slider{
+
+    margin-top:12px;
+
+    margin-bottom:10px;
+
+}
+
+button{
+
+    border-radius:12px !important;
+
+    font-weight:600;
+
+    padding-left:20px !important;
+
+    padding-right:20px !important;
+
+}
+
+/*======================================================
+INSIGHT CARD
+======================================================*/
+
+.insight-card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 30px rgba(15,23,42,.08);
+
+    transition:.25s;
+
+}
+
+.insight-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.insight-row{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+.insight-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:28px;
+
+    flex-shrink:0;
+
+}
+
+.insight-title{
+
+    font-weight:700;
+
+    color:#0F172A;
+
+}
+
+.insight-description{
+
+    color:#64748B;
+
+    margin-bottom:0;
+
+    line-height:1.6;
+
+}
+
+/*======================================================
+METRIC CARD
+======================================================*/
+
+.metric-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    background:white;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+
+    transition:.25s;
+
+    overflow:hidden;
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 18px 40px rgba(15,23,42,.14);
+
+}
+
+.metric-card .card-body{
+
+    text-align:center;
+
+    padding:28px;
+
+}
+
+.metric-icon{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-size:34px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+.metric-value{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+    margin-bottom:6px;
+
+}
+
+.metric-title{
+
+    color:#64748B;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+/*======================================================
+CHART CARD
+======================================================*/
+
+.dashboard-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    background:white;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+
+    transition:.25s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.chart-title{
+
+    font-weight:700;
+
+    color:#0F172A;
+
+    margin:0;
+
+}
+
+.card-header{
+
+    background:white !important;
+
+    border-bottom:1px solid #E2E8F0;
+
+}
+
+/*======================================================
+HERO
+======================================================*/
+
+.hero-section{
+
+    padding:55px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #2563EB,
+
+        #4F46E5
+
+    );
+
+    color:white;
+
+    margin-bottom:30px;
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.15);
+
+    font-size:13px;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+}
+
+.hero-title{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+.hero-subtitle{
+
+    font-size:18px;
+
+    opacity:.92;
+
+    max-width:850px;
+
+}
+
+.section-header{
+
+    margin-bottom:24px;
+
+}
+
+.section-title{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+}
+
+.section-subtitle{
+
+    color:#64748B;
+
+    font-size:15px;
+
+}
