@@ -94,21 +94,26 @@ executive_summary = pd.read_parquet(
     ANOMALY_DIR / "executive_summary.parquet"
 )
 
+
 anomaly_method_counts = pd.read_parquet(
     ANOMALY_DIR / "anomaly_method_counts.parquet"
 )
+
 
 anomaly_categories = pd.read_parquet(
     ANOMALY_DIR / "anomaly_categories.parquet"
 )
 
+
 anomaly_scatter = pd.read_parquet(
     ANOMALY_DIR / "anomaly_scatter.parquet"
 )
 
+
 anomaly_feature_difference = pd.read_parquet(
     ANOMALY_DIR / "anomaly_feature_difference.parquet"
 )
+
 
 top10_anomalies = pd.read_parquet(
     ANOMALY_DIR / "top10_anomalies.parquet"
@@ -151,8 +156,16 @@ if __name__ == "__main__":
     print("Association Rules:", association_rules.shape)
     print("Anomaly Scatter:", anomaly_scatter.shape) 
 
-    print(executive_summary.columns.tolist())
-    print(anomaly_method_counts.columns.tolist())
-    print(anomaly_categories.columns.tolist())
-    print(anomaly_scatter.columns.tolist())
-    print(anomaly_feature_difference.columns.tolist())
+    # print(executive_summary.columns.tolist())
+    # print(anomaly_method_counts.columns.tolist())
+    # print(anomaly_categories.columns.tolist())
+    # print(anomaly_scatter.columns.tolist())
+    # print(anomaly_feature_difference.columns.tolist())
+
+    print(association_rules.columns.tolist())
+    print(association_rule_scatter.columns.tolist())
+    print(association_rule_summary.columns.tolist())
+    print(top_lift_rules.columns.tolist())
+    print(business_insights.columns.tolist())
+    print(frequent_itemsets.columns.tolist())
+    print(bin_edges.columns.tolist())
