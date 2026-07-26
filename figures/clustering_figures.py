@@ -181,54 +181,129 @@ def create_cluster_profile_heatmap(df):
 
     return fig
 
-
-
 # ==========================================================
 # HIERARCHICAL CLUSTERING
 # ==========================================================
 
+import plotly.express as px
 
-def create_hierarchy_silhouette_chart(df):
+
+def create_hierarchy_elbow_chart(df, group):
+
+    filtered = df[
+        df["group"] == group
+    ]
+
+    fig = px.line(
+
+        filtered,
+
+        x="k",
+        y="inertia",
+
+        markers=True,
+
+        title=f"{group} - Elbow Method"
+
+    )
+
+    fig.update_layout(
+
+        template="plotly_white",
+
+        xaxis_title="Number of Clusters",
+
+        yaxis_title="Inertia"
+
+    )
+
+    return fig
+
+
+def create_hierarchy_silhouette_chart(df, group):
+
+    filtered = df[
+        df["group"] == group
+    ]
 
     fig = px.bar(
-        df,
+
+        filtered,
+
         x="k",
         y="silhouette",
-        color="group",
-        barmode="group",
-        title="Hierarchical Clustering Silhouette Score"
+
+        text="silhouette",
+
+        title=f"{group} - Silhouette Score"
+
     )
 
+    fig.update_traces(
+
+        texttemplate="%{text:.3f}",
+
+        textposition="outside"
+
+    )
 
     fig.update_layout(
-        template="plotly_white"
-    )
 
+        template="plotly_white",
+
+        xaxis_title="Number of Clusters",
+
+        yaxis_title="Silhouette"
+
+    )
 
     return fig
 
+# ==========================================================
+# HIERARCHY FEATURE EXPLORER
+# ==========================================================
 
+def create_hierarchy_scatter(
 
-def create_hierarchy_cluster_heatmap(df):
+    df,
 
-    heatmap_df = df.copy()
+    hierarchy_group,
 
+    x_feature,
 
-    fig = px.imshow(
-        heatmap_df.corr(numeric_only=True),
-        text_auto=".2f",
-        title="Hierarchical Cluster Relationship"
+    y_feature
+
+):
+
+    fig = px.scatter(
+
+        df,
+
+        x=x_feature,
+
+        y=y_feature,
+
+        color=hierarchy_group,
+
+        opacity=0.7,
+
+        title=f"{x_feature.replace('_',' ').title()} vs {y_feature.replace('_',' ').title()}"
+
     )
-
 
     fig.update_layout(
-        template="plotly_white"
+
+        template="plotly_white",
+
+        legend_title=hierarchy_group.replace("_"," ").title(),
+
+        xaxis_title=x_feature.replace("_"," ").title(),
+
+        yaxis_title=y_feature.replace("_"," ").title()
+
     )
 
-
     return fig
-
-
 
 # ==========================================================
 # DBSCAN + UMAP

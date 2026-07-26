@@ -50,8 +50,14 @@ hierarchy_silhouette = pd.read_parquet(
     CLUSTER_DIR / "hierarchy_silhouette.parquet"
 )
 
-hierarchy_group_clusters = pd.read_parquet(
-    CLUSTER_DIR / "hierarchy_group_clusters.parquet"
+# Full dataset (2.26M rows)
+hierarchy_group_clusters_full = pd.read_parquet(
+    CLUSTER_DIR / "hierarchy_group_clusters_full.parquet"
+)
+
+# Sampled dataset (50k rows)
+hierarchy_group_clusters_visualization = pd.read_parquet(
+    CLUSTER_DIR / "hierarchy_group_clusters_visualization.parquet"
 )
 
 # Pattern Outputs
@@ -174,5 +180,6 @@ if __name__ == "__main__":
     # print(cluster_profiles.columns.tolist())
     # print(cluster_profiles.shape)
 
-    print(hierarchy_group_clusters.columns.tolist())
-    print(dbscan_umap.columns.to_list())
+    print(kmeans_visualization.shape)
+    print(dbscan_umap.shape)
+    print(hierarchy_group_clusters.shape)
