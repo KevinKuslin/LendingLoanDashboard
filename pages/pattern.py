@@ -7,8 +7,12 @@ from components.hero import hero
 
 from utils.data_loader import (
     association_rule_summary,
-    association_rules,
+    association_rules, 
+    top_lift_rules, 
+    business_insights
 )
+
+from utils.pattern_insights import pattern_insights
 
 dash.register_page(
     __name__,
@@ -17,10 +21,20 @@ dash.register_page(
 )
 
 pattern_summary = association_rule_summary.iloc[0]
+top_patterns = (
+    top_lift_rules
+    .merge(
+        business_insights[["rank", "title", "description"]],
+        on="rank",
+        how="left"
+    )
+    .sort_values("lift", ascending=False)
+    .head(10)
+)
 
 TRANSACTIONS = int(pattern_summary["total_transactions"])
 FREQUENT_ITEMSETS = int(pattern_summary["frequent_itemsets"])
-ASSOCIATION_RULES = len(association_rules)
+ASSOCIATION_RULES = len(association_rules) 
 
 layout = dbc.Container(
     [
@@ -691,6 +705,129 @@ layout = dbc.Container(
             className="shadow-sm border-0 mb-4"
 
         ),
+
+        html.Br(), 
+
+        dbc.Card(
+
+            dbc.CardBody(
+
+                [
+
+                    html.H4(
+                        "🏆 Top 10 High-Impact Association Patterns",
+                        className="fw-bold mb-4"
+                    ),
+
+                    dbc.Row(
+
+                        [
+
+                            dbc.Col(
+
+                                dbc.Card(
+
+                                    dbc.CardBody(
+
+                                        [
+
+                                            html.H5(
+                                                f"🥇 Rule #{rule['rank']}",
+                                                className="fw-bold text-primary"
+                                            ),
+
+                                            dbc.Badge(
+                                                rule["category"],
+                                                color="primary",
+                                                className="mb-3"
+                                            ),
+
+                                            html.P([
+                                                html.Strong("IF: "),
+                                                rule["IF"]
+                                            ]),
+
+                                            html.P([
+                                                html.Strong("THEN: "),
+                                                rule["THEN"]
+                                            ]),
+
+                                            dbc.Row(
+
+                                                [
+
+                                                    dbc.Col(
+                                                        [
+                                                            html.Small("Support"),
+                                                            html.H6(
+                                                                f"{rule['support']*100:.1f}%"
+                                                            )
+                                                        ]
+                                                    ),
+
+                                                    dbc.Col(
+                                                        [
+                                                            html.Small("Confidence"),
+                                                            html.H6(
+                                                                f"{rule['confidence']*100:.1f}%"
+                                                            )
+                                                        ]
+                                                    ),
+
+                                                    dbc.Col(
+                                                        [
+                                                            html.Small("Lift"),
+                                                            html.H6(
+                                                                f"{rule['lift']:.2f}×"
+                                                            )
+                                                        ]
+                                                    )
+
+                                                ],
+
+                                                className="mb-3"
+
+                                            ),
+
+                                            html.H6("Business Insight"),
+
+                                            html.P(
+                                                rule["insight"],
+                                                className="text-muted"
+                                            ),
+
+                                            dbc.Alert(
+                                                rule["recommendation"],
+                                                color="warning",
+                                                className="mb-0"
+                                            )
+
+                                        ]
+
+                                    ),
+
+                                    className="shadow-sm h-100"
+
+                                ),
+
+                                lg=6,
+                                className="mb-4"
+
+                            )
+
+                            for rule in pattern_insights
+
+                        ]
+
+                    )
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0"
+
+        )
     ],
 
     fluid=True,
