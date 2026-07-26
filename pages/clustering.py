@@ -20,6 +20,7 @@ from components.insight_card import insight_card
 from components.hero import hero
 from components.hierarchy_summary_card import hierarchy_summary_card
 from components.analysis_note_card import analysis_note_card
+from components.card import dbscan_explanation_card
 
 from figures.clustering_figures import (
     create_elbow_chart,
@@ -957,6 +958,18 @@ layout = dbc.Container(
         analysis_note_card(),
 
         html.Br(), 
+
+        dbc.Row(
+            [
+
+                dbc.Col(
+                    dbscan_explanation_card(),
+                    lg=12
+                )
+
+            ],
+            className="mb-4"
+        ),
 
         dbc.Row(
 
