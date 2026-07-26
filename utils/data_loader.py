@@ -102,7 +102,6 @@ executive_summary = pd.read_parquet(
     ANOMALY_DIR / "executive_summary.parquet"
 )
 
-
 anomaly_method_counts = pd.read_parquet(
     ANOMALY_DIR / "anomaly_method_counts.parquet"
 )
@@ -170,11 +169,17 @@ if __name__ == "__main__":
     # print(anomaly_scatter.columns.tolist())
     # print(anomaly_feature_difference.columns.tolist())
 
-    print(executive_summary.head())
-    print(anomaly_method_counts.head())
-    print(anomaly_categories.head())
-    print(anomaly_scatter.head())
-    print(anomaly_feature_difference.head())
+    # print(executive_summary.head())
+    # print(anomaly_method_counts.head())
+    # print(anomaly_categories.head())
+    # print(anomaly_scatter.head())
+    # print(anomaly_feature_difference.head())
+
+    print(executive_summary.shape)
+    print(anomaly_method_counts.shape)
+    print(anomaly_categories.shape)
+    print(anomaly_scatter.shape)
+    print(anomaly_feature_difference.shape)
 
     # print(association_rules.columns.tolist())
     # print(association_rule_scatter.columns.tolist())

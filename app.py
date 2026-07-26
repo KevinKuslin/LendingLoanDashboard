@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 import callbacks.executive_callbacks
 import callbacks.clustering_callbacks
 import callbacks.pattern_callbacks
+import callbacks.anomaly_callbacks
 from components.navbar import navbar
 
 app = Dash(

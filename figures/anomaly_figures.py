@@ -1,7 +1,5 @@
 import plotly.express as px
 
-
-
 def apply_theme(fig):
 
     fig.update_layout(
@@ -107,5 +105,72 @@ def create_anomaly_feature_chart(df):
         title="Main Anomaly Drivers"
     )
 
+
+    return apply_theme(fig) 
+
+
+def create_anomaly_scatter(df, x_axis, y_axis):
+
+    MAX_POINTS = 50_000
+
+    if len(df) > MAX_POINTS:
+        df = df.sample(
+            n=MAX_POINTS,
+            random_state=42
+        )
+
+    fig = px.scatter(
+
+        df,
+
+        x=x_axis,
+
+        y=y_axis,
+
+        color="category",
+
+        hover_data={
+            "annual_inc": ":.2f",
+            "loan_amnt": ":.2f",
+            "fico_range_low": True,
+            "dti": ":.2f",
+            "recoveries": ":.2f",
+            "methods_detected": True,
+        },
+
+        color_discrete_map={
+            "Normal": "#CBD5E1",
+            "Weak anomaly": "#3B82F6",
+            "Moderate anomaly": "#F59E0B",
+            "Strong anomaly": "#EF4444",
+        },
+
+        category_orders={
+            "category": [
+                "Normal",
+                "Weak anomaly",
+                "Moderate anomaly",
+                "Strong anomaly",
+            ]
+        }
+
+    )
+
+    fig.update_traces(
+
+        marker=dict(
+            size=5,
+            opacity=0.35
+        )
+
+    )
+
+    fig.update_layout(
+
+        title=f"{x_axis.replace('_', ' ').title()} vs {y_axis.replace('_', ' ').title()}",
+
+        legend_title="Category"
+
+    )
 
     return apply_theme(fig)
