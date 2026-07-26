@@ -555,7 +555,142 @@ layout = dbc.Container(
                 }
             ]
 
-        )
+        ), 
+
+        dbc.Card(
+
+            dbc.CardBody(
+
+                [
+
+                    html.H4(
+                        "Support vs Confidence Analysis",
+                        className="fw-bold mb-3"
+                    ),
+
+                    dbc.Row(
+
+                        [
+
+                            dbc.Col(
+
+                                [
+
+                                    html.Label("Minimum Lift"),
+
+                                    dcc.Slider(
+                                        id="scatter-lift",
+                                        min=1,
+                                        max=float(
+                                            association_rules["lift"].max()
+                                        ),
+                                        value=1,
+                                        step=0.1,
+                                    )
+
+                                ],
+
+                                md=4
+
+                            ),
+
+                            dbc.Col(
+
+                                [
+
+                                    html.Label("Color By"),
+
+                                    dcc.Dropdown(
+
+                                        id="scatter-color",
+
+                                        value="lift",
+
+                                        clearable=False,
+
+                                        options=[
+
+                                            {
+                                                "label":"Lift",
+                                                "value":"lift"
+                                            },
+
+                                            {
+                                                "label":"Confidence",
+                                                "value":"confidence"
+                                            },
+
+                                            {
+                                                "label":"Support",
+                                                "value":"support"
+                                            }
+
+                                        ]
+
+                                    )
+
+                                ],
+
+                                md=4
+
+                            ),
+
+                            dbc.Col(
+
+                                [
+
+                                    html.Label("Bubble Size"),
+
+                                    dcc.Dropdown(
+
+                                        id="scatter-size",
+
+                                        value="lift",
+
+                                        clearable=False,
+
+                                        options=[
+
+                                            {
+                                                "label":"Lift",
+                                                "value":"lift"
+                                            },
+
+                                            {
+                                                "label":"Confidence",
+                                                "value":"confidence"
+                                            },
+
+                                            {
+                                                "label":"Support",
+                                                "value":"support"
+                                            }
+
+                                        ]
+
+                                    )
+
+                                ],
+
+                                md=4
+
+                            )
+
+                        ]
+
+                    ),
+
+                    dcc.Graph(
+                        id="support-confidence-scatter"
+                    )
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0 mb-4"
+
+        ),
     ],
 
     fluid=True,

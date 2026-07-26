@@ -2,7 +2,12 @@ from dash import callback, Input, Output
 
 from utils.data_loader import (
     association_rules,
-    association_rule_summary
+    association_rule_summary, 
+    association_rule_scatter
+)
+
+from figures.pattern_figures import (
+    create_support_confidence_scatter
 )
 
 pattern_summary = association_rule_summary.iloc[0]
@@ -154,5 +159,45 @@ def reset_rule_filters(n_clicks):
         0,
 
         float(pattern_summary["min_lift"])
+
+    )
+
+# =====================================================
+# Support vs Confidence Scatter
+# =====================================================
+
+@callback(
+
+    Output(
+        "support-confidence-scatter",
+        "figure"
+    ),
+
+    Input("scatter-lift", "value"),
+    Input("if-filter", "value"),
+    Input("then-filter", "value"),
+    Input("scatter-color", "value"),
+    Input("scatter-size", "value"),
+
+)
+
+def update_support_confidence(
+
+    min_lift,
+    if_rule,
+    then_rule, 
+    color_by,
+    size_by
+
+):
+
+    return create_support_confidence_scatter(
+
+        association_rule_scatter,
+        min_lift,
+        if_rule,
+        then_rule, 
+        color_by,
+        size_by
 
     )
