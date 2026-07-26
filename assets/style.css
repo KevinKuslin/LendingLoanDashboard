@@ -551,3 +551,17 @@ HERO
     font-size:15px;
 
 }
+
+.card h5{
+    font-weight:700;
+    color:#2563EB;
+}
+
+.card p{
+    color:#64748B;
+    line-height:1.6;
+}
+
+.alert-info{
+    border-radius:14px;
+}

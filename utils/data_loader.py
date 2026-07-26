@@ -68,6 +68,8 @@ association_rule_summary = pd.read_parquet(
     PATTERN_DIR / "association_rule_summary.parquet"
 )
 
+pattern_summary = association_rule_summary.iloc[0]
+
 association_rules = pd.read_parquet(
     PATTERN_DIR / "association_rules.parquet"
 )
@@ -176,10 +178,18 @@ if __name__ == "__main__":
     # print(frequent_itemsets.columns.tolist())
     # print(bin_edges.columns.tolist())
 
+    print(association_rules.head())
+    print(association_rule_scatter.head())
+    print(association_rule_summary.head())
+    print(top_lift_rules.head())
+    print(business_insights.head())
+    print(frequent_itemsets.head())
+    print(bin_edges.head())
+
     # print(cluster_profiles.head())
     # print(cluster_profiles.columns.tolist())
     # print(cluster_profiles.shape)
 
-    print(kmeans_visualization.shape)
-    print(dbscan_umap.shape)
-    print(hierarchy_group_clusters.shape)
+    # print(kmeans_visualization.shape)
+    # print(dbscan_umap.shape)
+    # print(hierarchy_group_clusters.shape)
