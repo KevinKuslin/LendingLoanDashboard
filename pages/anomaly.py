@@ -509,5 +509,125 @@ layout = dbc.Container(
             className="shadow-sm border-0"
 
         ),
+
+        dbc.Card(
+
+            dbc.CardBody(
+
+                [
+
+                    html.H4(
+                        "Detection Method Comparison",
+                        className="fw-bold mb-3"
+                    ),
+
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                [
+                                    html.Label("Anomaly Category"),
+
+                                    dcc.Dropdown(
+                                        id="method-category",
+                                        clearable=False,
+                                        value="All",
+                                        options=[
+                                            {"label":"All", "value":"All"},
+                                            {"label":"Weak anomaly", "value":"Weak anomaly"},
+                                            {"label":"Moderate anomaly", "value":"Moderate anomaly"},
+                                            {"label":"Strong anomaly", "value":"Strong anomaly"}
+                                        ]
+                                    )
+                                ],
+                                md=4
+                            )
+                        ],
+
+                        className="mb-3"
+
+                    ),
+
+                    dcc.Graph(
+                        id="method-chart",
+                        config={"displayModeBar": False}
+                    ),
+
+                    dbc.Alert(
+
+                        id="method-description",
+
+                        color="light",
+
+                        className="mt-3"
+
+                    ), 
+
+                    html.Br(),
+
+                    html.Div(
+
+                        id="method-insight"
+
+                    ), 
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0"
+
+        ), 
+
+        dbc.Row(
+
+            [
+
+                dbc.Col(
+
+                    [
+
+                        html.Label("Business Reason"),
+
+                        dcc.Dropdown(
+
+                            id="anomaly-reason",
+
+                            value="All",
+
+                            clearable=False,
+
+                            options=[
+
+                                {"label":"All","value":"All"},
+
+                                *[
+                                    {
+                                        "label":i,
+                                        "value":i
+                                    }
+
+                                    for i in sorted(
+                                        top10_anomalies[
+                                            "business_reason"
+                                        ].unique()
+                                    )
+
+                                ]
+
+                            ]
+
+                        )
+
+                    ],
+
+                    md=5
+
+                )
+
+            ],
+
+            className="mb-3"
+
+        )
     ]
 )

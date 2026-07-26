@@ -126,6 +126,10 @@ top10_anomalies = pd.read_parquet(
     ANOMALY_DIR / "top10_anomalies.parquet"
 )
 
+anomaly_method_breakdown = pd.read_parquet(
+    ANOMALY_DIR / "anomaly_method_breakdown.parquet"
+)
+
 # ==========================================================
 # Dashboard Output
 # ==========================================================
@@ -175,11 +179,17 @@ if __name__ == "__main__":
     # print(anomaly_scatter.head())
     # print(anomaly_feature_difference.head())
 
-    print(executive_summary.shape)
-    print(anomaly_method_counts.shape)
-    print(anomaly_categories.shape)
-    print(anomaly_scatter.shape)
-    print(anomaly_feature_difference.shape)
+    # print(executive_summary.shape)
+    # print(anomaly_method_counts.shape)
+    # print(anomaly_categories.shape)
+    # print(anomaly_scatter.shape)
+    # print(anomaly_feature_difference.shape)
+
+    # print(anomaly_method_breakdown.columns)
+    # print(anomaly_method_breakdown.head())
+
+    print(top10_anomalies.columns.tolist()) 
+    print(top10_anomalies)
 
     # print(association_rules.columns.tolist())
     # print(association_rule_scatter.columns.tolist())

@@ -173,4 +173,91 @@ def create_anomaly_scatter(df, x_axis, y_axis):
 
     )
 
+    return apply_theme(fig) 
+
+# =====================================
+# Detection Agreement
+# =====================================
+
+def create_method_chart(df, category="All"):
+
+    df = df.copy()
+
+    # ------------------------
+    # Filter category
+    # ------------------------
+
+    if category != "All":
+
+        df = df[
+            df["category"] == category
+        ]
+
+    # ------------------------
+    # Count detections
+    # ------------------------
+
+    plot_df = df[
+        ["IQR", "ZScore", "IsolationForest"]
+    ].sum().reset_index()
+
+    plot_df.columns = [
+        "method",
+        "count"
+    ]
+
+    plot_df["percentage"] = (
+        plot_df["count"]
+        / len(df)
+        * 100
+    ).round(1)
+
+    color_map = {
+
+        "IQR": "#2563EB",
+
+        "ZScore": "#F59E0B",
+
+        "IsolationForest": "#EF4444"
+
+    }
+
+    fig = px.bar(
+
+        plot_df,
+
+        x="method",
+
+        y="count",
+
+        text_auto=True
+
+    )
+
+    fig.update_traces(
+
+        marker_color=[
+            color_map[m]
+            for m in plot_df["method"]
+        ],
+
+        customdata=plot_df[["percentage"]],
+
+        hovertemplate=
+        "<b>%{x}</b><br>"
+        "Detected Loans: %{y:,}<br>"
+        "Within Category: %{customdata[0]}%<extra></extra>"
+
+    )
+
+    fig.update_layout(
+
+        title=f"Detection Methods ({category})",
+
+        xaxis_title="Detection Method",
+
+        yaxis_title="Detected Loans"
+
+    )
+
     return apply_theme(fig)

@@ -1,4 +1,4 @@
-from dash import callback, Input, Output
+from dash import callback, Input, Output, html, ctx 
 
 from utils.data_loader import (
     executive_summary, 
@@ -6,12 +6,18 @@ from utils.data_loader import (
     anomaly_categories, 
     anomaly_scatter, 
     anomaly_feature_difference, 
-    top10_anomalies
+    top10_anomalies, 
+    anomaly_method_breakdown
 )
+
+from components.insight_card import insight_card
+
+from utils.anomaly_method_insights import METHOD_INSIGHTS
 
 from figures.anomaly_figures import (
     create_anomaly_scatter, 
-    create_anomaly_feature_chart
+    create_anomaly_feature_chart, 
+    create_method_chart
 )
 
 @callback(
@@ -113,4 +119,58 @@ def reset_scatter(_):
         "All",
         "All"
 
+    )
+
+METHOD_INFO = {
+
+    "All":
+        (
+            "Comparison",
+            "Shows how many borrowers were flagged by each anomaly detection algorithm."
+        ),
+
+    "IQR":
+        (
+            "IQR",
+            "Detects extreme values independently within each feature. It is highly sensitive to univariate outliers and therefore identifies the largest number of anomalies."
+        ),
+
+    "Z-Score":
+        (
+            "Z-Score",
+            "Measures how far a borrower deviates from the population mean. Effective when variables approximately follow a normal distribution."
+        ),
+
+    "Isolation Forest":
+        (
+            "Isolation Forest",
+            "Uses machine learning to isolate unusual borrower profiles across multiple features simultaneously, making it effective for detecting multivariate anomalies."
+        )
+
+}
+
+@callback(
+    Output("method-chart", "figure"),
+    Output("method-insight", "children"),
+    Input("method-category", "value")
+)
+
+def update_method_chart(category):
+
+    info = METHOD_INSIGHTS.get(
+        category,
+        METHOD_INSIGHTS["All"]
+    )
+
+    return (
+        create_method_chart(
+            anomaly_method_breakdown,
+            category
+        ),
+
+        insight_card(
+            title=f"{info['icon']} {info['title']}",
+            description=info["text"],
+            color="#2563EB"
+        )
     )
