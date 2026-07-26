@@ -198,8 +198,6 @@ def create_state_chart(df=None):
 
     return apply_dashboard_theme(fig)
 
-
-
 # ==========================================================
 # Loan Amount
 # ==========================================================
@@ -208,7 +206,9 @@ def create_loan_chart(df=None):
 
     if df is None:
 
-        data = loan_amount_distribution.copy()
+        data = accepted_raw[
+            ["loan_amnt"]
+        ]
 
     else:
 
@@ -228,9 +228,7 @@ def create_loan_chart(df=None):
     )
 
 
-    return apply_dashboard_theme(fig)
-
-
+    return apply_dashboard_theme(fig) 
 
 # ==========================================================
 # Interest Rate

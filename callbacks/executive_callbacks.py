@@ -20,8 +20,8 @@ def filter_loans(
     state,
     loan_range
 ):
-
-    df = accepted_raw.copy()
+    
+    df = accepted_raw
 
 
     if loan_status != "All":
@@ -50,7 +50,6 @@ def filter_loans(
         &
         (df["loan_amnt"] <= loan_range[1])
     ]
-
 
     return df
 

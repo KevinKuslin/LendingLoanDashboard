@@ -261,3 +261,48 @@ def create_method_chart(df, category="All"):
     )
 
     return apply_theme(fig)
+
+
+def create_anomaly_category_chart(df):
+
+    fig = px.pie(
+
+        df,
+
+        names="category",
+
+        values="count",
+
+        hole=0.55,
+
+        title="Distribution of Anomaly Severity"
+
+    )
+
+    fig.update_traces(
+
+        textinfo="percent+label",
+
+        hovertemplate=
+        "<b>%{label}</b><br>"
+        "Cases: %{value:,}<br>"
+        "Percentage: %{percent}"
+
+    )
+
+    fig.update_layout(
+
+        showlegend=True,
+
+        margin=dict(
+            t=50,
+            b=20,
+            l=20,
+            r=20
+        ),
+
+        legend_title_text="Severity"
+
+    )
+
+    return fig

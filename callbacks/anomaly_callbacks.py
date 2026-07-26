@@ -1,5 +1,7 @@
 from dash import callback, Input, Output, html, ctx 
 import dash_bootstrap_components as dbc
+import plotly.express as px 
+
 
 from utils.data_loader import (
     executive_summary, 
@@ -338,3 +340,41 @@ def update_investigation_panel(queue_type):
         className="shadow-sm border-0"
 
     )
+
+@callback(
+
+    Output(
+        "feature-difference-chart",
+        "figure"
+    ),
+
+    Input(
+        "feature-top-n",
+        "value"
+    )
+
+)
+
+def update_feature_difference(top_n):
+
+    df = anomaly_feature_difference.head(top_n)
+
+    fig = px.bar(
+
+        df.sort_values(
+            "difference"
+        ),
+
+        x="difference",
+
+        y="feature",
+
+        orientation="h",
+
+        title="Most Influential Features Separating Anomalies"
+
+    )
+
+
+    return fig
+
