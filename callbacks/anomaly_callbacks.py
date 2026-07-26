@@ -1,4 +1,5 @@
 from dash import callback, Input, Output, html, ctx 
+import dash_bootstrap_components as dbc
 
 from utils.data_loader import (
     executive_summary, 
@@ -11,6 +12,7 @@ from utils.data_loader import (
 )
 
 from components.insight_card import insight_card
+from components.anomaly_case_card import anomaly_case_card
 
 from utils.anomaly_method_insights import METHOD_INSIGHTS
 
@@ -173,4 +175,50 @@ def update_method_chart(category):
             description=info["text"],
             color="#2563EB"
         )
+    )
+
+@callback(
+    Output("top-anomaly-cards", "children"),
+    Input("anomaly-reason", "value")
+)
+def update_top_anomalies(reason):
+
+    df = top10_anomalies.copy()
+
+    if reason != "All":
+        df = df[
+            df["business_reason"] == reason
+        ]
+
+    if df.empty:
+
+        return dbc.Alert(
+
+            "No anomalies match the selected reason.",
+
+            color="secondary"
+
+        )
+
+    cards = [
+
+        dbc.Col(
+
+            anomaly_case_card(row),
+
+            lg=6,
+            md=12
+
+        )
+
+        for _, row in df.iterrows()
+
+    ]
+
+    return dbc.Row(
+
+        cards,
+
+        className="g-4"
+
     )

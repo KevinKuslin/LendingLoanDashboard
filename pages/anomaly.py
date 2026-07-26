@@ -1,9 +1,10 @@
-from dash import html, dcc 
+from dash import html, dcc, dash_table 
 import dash
 import dash_bootstrap_components as dbc
 
 from components.hero import hero
 from components.metric_card import metric_card 
+from components.anomaly_case_card import anomaly_case_card
 
 from figures.anomaly_figures import create_anomaly_scatter
 
@@ -552,16 +553,6 @@ layout = dbc.Container(
                         config={"displayModeBar": False}
                     ),
 
-                    dbc.Alert(
-
-                        id="method-description",
-
-                        color="light",
-
-                        className="mt-3"
-
-                    ), 
-
                     html.Br(),
 
                     html.Div(
@@ -578,56 +569,84 @@ layout = dbc.Container(
 
         ), 
 
-        dbc.Row(
+        dbc.Card(
 
-            [
+            dbc.CardBody(
 
-                dbc.Col(
+                [
 
-                    [
+                    html.H4(
+                        "Top Investigated Anomalies",
+                        className="fw-bold mb-3"
+                    ),
 
-                        html.Label("Business Reason"),
+                    dbc.Row(
 
-                        dcc.Dropdown(
+                        [
 
-                            id="anomaly-reason",
+                            dbc.Col(
 
-                            value="All",
+                                [
 
-                            clearable=False,
+                                    html.Label("Business Reason"),
 
-                            options=[
+                                    dcc.Dropdown(
 
-                                {"label":"All","value":"All"},
+                                        id="anomaly-reason",
 
-                                *[
-                                    {
-                                        "label":i,
-                                        "value":i
-                                    }
+                                        value="All",
 
-                                    for i in sorted(
-                                        top10_anomalies[
-                                            "business_reason"
-                                        ].unique()
+                                        clearable=False,
+
+                                        options=[
+
+                                            {
+                                                "label": "All",
+                                                "value": "All"
+                                            },
+
+                                            *[
+                                                {
+                                                    "label": i,
+                                                    "value": i
+                                                }
+
+                                                for i in sorted(
+                                                    top10_anomalies[
+                                                        "business_reason"
+                                                    ].unique()
+                                                )
+
+                                            ]
+
+                                        ]
+
                                     )
 
-                                ]
+                                ],
 
-                            ]
+                                md=5
 
-                        )
+                            )
 
-                    ],
+                        ],
 
-                    md=5
+                        className="mb-3"
 
-                )
+                    ),
 
-            ],
+                    html.Div(
 
-            className="mb-3"
+                        id="top-anomaly-cards"
 
-        )
+                    )
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0"
+
+        ),
     ]
 )
