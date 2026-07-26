@@ -1,19 +1,17 @@
 from dash import callback, Input, Output
 
-from utils.data_loader import (
-    kmeans_visualization
-)
+from utils.data_loader import kmeans_visualization
 
-from figures.clustering_figures import (
-    create_cluster_scatter
-)
+from figures.clustering_figures import create_cluster_scatter
+
 
 @callback(
     Output("cluster-scatter", "figure"),
     Input("cluster-k-selector", "value")
 )
-def update_cluster_scatter(k):
+def update_cluster_scatter(selected_k):
+
     return create_cluster_scatter(
         kmeans_visualization,
-        k
+        selected_k
     )

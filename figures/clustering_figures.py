@@ -55,33 +55,68 @@ def create_silhouette_chart(df):
 # KMEANS VISUALIZATION
 # ==========================================================
 
+import plotly.express as px
+
+
 def create_cluster_scatter(df, selected_k):
 
-    filtered = df[
-        df["k"] == selected_k
-    ]
+    filtered = df[df["k"] == selected_k] 
 
-    fig = px.scatter(
-        filtered,
-        x="x",
-        y="y",
-        color=filtered["cluster"].astype(str),
-        title=f"K-Means Cluster Visualization (K={selected_k})",
-        opacity=0.65,
-        color_discrete_sequence=px.colors.qualitative.Set2
+    filtered = filtered.sample(
+        min(30000, len(filtered)),
+        random_state=42
     )
 
-    fig.update_traces(marker=dict(size=5))
+    fig = px.scatter(
+
+        filtered,
+
+        x="x",
+        y="y",
+
+        color=filtered["cluster"].astype(str),
+
+        title=f"K-Means Visualization (k={selected_k})",
+
+        opacity=0.7,
+
+        hover_data=["cluster"]
+
+    )
+
+    fig.update_traces(
+        marker=dict(size=5)
+    )
 
     fig.update_layout(
+
         template="plotly_white",
+
+        legend_title="Cluster",
+
         xaxis_title="Component 1",
+
         yaxis_title="Component 2"
+
+    )
+
+    fig.update_layout(
+
+        transition_duration=400,
+
+        legend=dict(
+
+            orientation="h",
+
+            y=1.08,
+
+            x=0
+
+        )
+
     )
 
     return fig
-
-
 
 # ==========================================================
 # CLUSTER PROFILE

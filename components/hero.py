@@ -1,7 +1,19 @@
 from dash import html
 
 
-def hero():
+def hero(
+
+    title="Lending Club Analytics Dashboard",
+
+    subtitle=(
+        "Interactive analytics platform for customer segmentation, "
+        "pattern discovery, and anomaly investigation using "
+        "unsupervised machine learning."
+    ),
+
+    tag="PPTI 21 • GROUP 2"
+
+):
 
     return html.Div(
 
@@ -9,7 +21,7 @@ def hero():
 
             html.Div(
 
-                "PPTI 21 • GROUP 2",
+                tag,
 
                 className="hero-tag"
 
@@ -17,7 +29,7 @@ def hero():
 
             html.H1(
 
-                "Lending Club Analytics Dashboard",
+                title,
 
                 className="hero-title"
 
@@ -25,7 +37,7 @@ def hero():
 
             html.P(
 
-                "Interactive analytics platform for customer segmentation, pattern discovery, and anomaly investigation using unsupervised machine learning.",
+                subtitle,
 
                 className="hero-subtitle"
 
