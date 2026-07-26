@@ -9,10 +9,18 @@ from utils.data_loader import (
     association_rule_summary,
     association_rules, 
     top_lift_rules, 
-    business_insights
+    business_insights, 
+    frequent_itemsets
+)
+
+from components.pattern_insight_card import pattern_insight_card
+
+from utils.pattern_business_insights import (
+    pattern_business_insights
 )
 
 from utils.pattern_insights import pattern_insights
+from figures.pattern_figures import create_frequent_itemsets_chart
 
 dash.register_page(
     __name__,
@@ -826,6 +834,78 @@ layout = dbc.Container(
             ),
 
             className="shadow-sm border-0"
+
+        ), 
+
+        html.Br(),
+
+        dbc.Card(
+
+            dbc.CardBody(
+
+                [
+
+                    html.H4(
+                        "Frequent Borrower Characteristics",
+                        className="fw-bold mb-3"
+                    ),
+
+                    html.P(
+
+                        "The chart below displays the borrower characteristics that appear most frequently in the Lending Club dataset. Higher support indicates that the characteristic occurs more often across all loan applications.",
+
+                        className="text-muted"
+
+                    ),
+
+                    dcc.Graph(
+
+                        id="frequent-itemsets-chart",
+
+                        figure=create_frequent_itemsets_chart(
+                            frequent_itemsets
+                        ),
+
+                        config={
+                            "displayModeBar": False
+                        }
+
+                    )
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0 mb-4"
+
+        ),
+
+        html.Br(),
+
+        html.H3(
+            "📌 Business Insights",
+            className="fw-bold mb-3"
+        ),
+
+        dbc.Row(
+
+            [
+
+                dbc.Col(
+
+                    pattern_insight_card(item),
+
+                    lg=3,
+                    md=6,
+                    sm=12
+
+                )
+
+                for item in pattern_business_insights
+
+            ],
+
+            className="g-4"
 
         )
     ],

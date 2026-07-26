@@ -170,6 +170,12 @@ if __name__ == "__main__":
     # print(anomaly_scatter.columns.tolist())
     # print(anomaly_feature_difference.columns.tolist())
 
+    print(executive_summary.head())
+    print(anomaly_method_counts.head())
+    print(anomaly_categories.head())
+    print(anomaly_scatter.head())
+    print(anomaly_feature_difference.head())
+
     # print(association_rules.columns.tolist())
     # print(association_rule_scatter.columns.tolist())
     # print(association_rule_summary.columns.tolist())
@@ -178,13 +184,13 @@ if __name__ == "__main__":
     # print(frequent_itemsets.columns.tolist())
     # print(bin_edges.columns.tolist())
 
-    print(association_rules.head())
-    print(association_rule_scatter.head())
-    print(association_rule_summary.head())
-    print(top_lift_rules.head())
-    print(business_insights.head())
-    print(frequent_itemsets.head())
-    print(bin_edges.head())
+    # print(association_rules.head())
+    # print(association_rule_scatter.head())
+    # print(association_rule_summary.head())
+    # print(top_lift_rules.head())
+    # print(business_insights.head())
+    # print(frequent_itemsets.head())
+    # print(bin_edges.head())
 
     # print(cluster_profiles.head())
     # print(cluster_profiles.columns.tolist())
