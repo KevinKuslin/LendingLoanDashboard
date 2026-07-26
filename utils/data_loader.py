@@ -188,9 +188,12 @@ if __name__ == "__main__":
     # print(anomaly_method_breakdown.columns)
     # print(anomaly_method_breakdown.head())
 
-    print(top10_anomalies.columns.tolist()) 
-    print(top10_anomalies)
-    print(top10_anomalies[['fico_range_low', 'dti']])
+    # print(top10_anomalies.columns.tolist()) 
+    # print(top10_anomalies)
+    # print(top10_anomalies[['fico_range_low', 'dti']])
+
+    print(anomaly_feature_difference.head())
+    print(anomaly_feature_difference.columns)
 
     # print(association_rules.columns.tolist())
     # print(association_rule_scatter.columns.tolist())

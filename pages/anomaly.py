@@ -648,5 +648,89 @@ layout = dbc.Container(
             className="shadow-sm border-0"
 
         ),
+
+        dbc.Card(
+
+            dbc.CardBody(
+
+                [
+
+                    html.H4(
+                        "Investigation Queue",
+                        className="fw-bold mb-3"
+                    ),
+
+                    dbc.Row(
+
+                        [
+
+                            dbc.Col(
+
+                                [
+
+                                    html.Label(
+                                        "Investigation Type",
+                                        className="fw-semibold"
+                                    ),
+
+                                    dbc.RadioItems(
+
+                                        id="investigation-type",
+
+                                        value="risk",
+
+                                        options=[
+
+                                            {
+                                                "label": "🚨 Potential Risk Signals",
+                                                "value": "risk"
+                                            },
+
+                                            {
+                                                "label": "💼 Rare Legitimate Cases",
+                                                "value": "legitimate"
+                                            },
+
+                                            {
+                                                "label": "🗂 Data Quality Review",
+                                                "value": "quality"
+                                            }
+
+                                        ],
+
+                                        className="mt-2"
+
+                                    )
+
+                                ],
+
+                                md=4
+
+                            ),
+
+
+                            dbc.Col(
+
+                                html.Div(
+
+                                    id="investigation-panel"
+
+                                ),
+
+                                md=8
+
+                            )
+
+                        ]
+
+                    )
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0 mt-4"
+
+        )
     ]
 )

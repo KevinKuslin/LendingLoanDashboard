@@ -15,6 +15,7 @@ from components.insight_card import insight_card
 from components.anomaly_case_card import anomaly_case_card
 
 from utils.anomaly_method_insights import METHOD_INSIGHTS
+from utils.investigation_queue import INVESTIGATION_QUEUE
 
 from figures.anomaly_figures import (
     create_anomaly_scatter, 
@@ -220,5 +221,120 @@ def update_top_anomalies(reason):
         cards,
 
         className="g-4"
+
+    )
+
+@callback(
+    Output(
+        "investigation-panel",
+        "children"
+    ),
+
+    Input(
+        "investigation-type",
+        "value"
+    )
+)
+
+def update_investigation_panel(queue_type):
+
+    info = INVESTIGATION_QUEUE[queue_type]
+
+    return dbc.Card(
+
+        dbc.CardBody(
+
+            [
+
+                dbc.Row(
+
+                    [
+
+                        dbc.Col(
+
+                            [
+
+                                html.H5(
+                                    info["title"],
+                                    className="fw-bold mb-2"
+                                ),
+
+                                dbc.Badge(
+                                    f"Priority: {info['priority']}",
+                                    color=info["color"],
+                                    className="mb-3"
+                                ),
+
+                            ],
+
+                            md=6
+
+                        ),
+
+                    ]
+
+                ),
+
+
+                html.Hr(),
+
+
+                html.H6(
+                    "Business Impact",
+                    className="fw-bold"
+                ),
+
+                html.P(
+                    info["impact"],
+                    className="text-muted"
+                ),
+
+
+                html.H6(
+                    "Typical Indicators",
+                    className="fw-bold mt-3"
+                ),
+
+                html.Ul(
+
+                    [
+
+                        html.Li(item)
+
+                        for item in info["indicators"]
+
+                    ]
+
+                ),
+
+
+                html.H6(
+                    "Recommended Actions",
+                    className="fw-bold mt-3"
+                ),
+
+                dbc.Alert(
+
+                    html.Ul(
+
+                        [
+
+                            html.Li(action)
+
+                            for action in info["actions"]
+
+                        ]
+
+                    ),
+
+                    color=info["color"]
+
+                )
+
+            ]
+
+        ),
+
+        className="shadow-sm border-0"
 
     )
