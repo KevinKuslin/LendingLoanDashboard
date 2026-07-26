@@ -65,10 +65,13 @@ def create_cluster_scatter(df, selected_k):
         filtered,
         x="x",
         y="y",
-        color="cluster",
-        title=f"K-Means Cluster Visualization (k={selected_k})",
-        opacity=0.7
+        color=filtered["cluster"].astype(str),
+        title=f"K-Means Cluster Visualization (K={selected_k})",
+        opacity=0.65,
+        color_discrete_sequence=px.colors.qualitative.Set2
     )
+
+    fig.update_traces(marker=dict(size=5))
 
     fig.update_layout(
         template="plotly_white",
@@ -115,6 +118,18 @@ def create_cluster_profile_heatmap(df):
         "cluster"
     )
 
+    profile.columns = [
+
+        "Loan Amount",
+        "Annual Income",
+        "Interest Rate",
+        "DTI",
+        "FICO",
+        "Total Accounts",
+        "Delinquencies",
+        "Recoveries",
+        "Charge Off Rate"
+    ]
 
     fig = px.imshow(
         profile.T,

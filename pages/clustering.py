@@ -2,7 +2,6 @@ from dash import html, dcc
 import dash
 import dash_bootstrap_components as dbc
 
-
 from utils.data_loader import (
     cluster_profiles,
     kmeans_elbow,
@@ -17,6 +16,7 @@ from utils.data_loader import (
 
 from components.metric_card import metric_card
 from components.chart_card import chart_card
+from components.insight_card import insight_card
 from components.hero import hero
 
 from figures.clustering_figures import (
@@ -338,16 +338,12 @@ layout = dbc.Container(
             className="section-title"
         ),
 
-
-
         dbc.Row(
-
             [
-
                 dbc.Col(
 
                     chart_card(
-                        "Hierarchical Clustering Evaluation",
+                        "Hierarchical Silhouette",
                         initial_hierarchy,
                         "hierarchy-chart"
                     ),
@@ -356,21 +352,121 @@ layout = dbc.Container(
 
                 ),
 
-
                 dbc.Col(
 
                     chart_card(
-                        "DBSCAN + UMAP Visualization",
-                        initial_dbscan,
-                        "dbscan-chart"
+                        "Hierarchical Cluster Profiles",
+                        create_hierarchy_cluster_heatmap(
+                            hierarchy_group_clusters
+                        ),
+                        "hierarchy-profile"
                     ),
 
                     lg=6
 
                 )
 
+            ],
+
+            className="g-4 mb-4"
+
+        ),
+
+        dbc.Row(
+
+            [
+
+                dbc.Col(
+
+                    chart_card(
+                        "DBSCAN + UMAP Projection",
+                        initial_dbscan,
+                        "dbscan-chart"
+                    ),
+
+                    lg=12
+
+                )
+
             ]
 
+        ), 
+
+        html.Br(),
+
+        dbc.Row(
+
+        [
+            dbc.Col(
+
+                insight_card(
+
+                    "Cluster Quality",
+
+                    (
+                        "K-Means achieved the highest silhouette score at "
+                        "k=3, indicating three borrower groups provide the "
+                        "best balance between cohesion and separation."
+                    ),
+
+                    "📈",
+
+                    "#2563EB"
+
+                ),
+
+                lg=4
+
+            ),
+
+            dbc.Col(
+
+                insight_card(
+
+                    "Risk Segment",
+
+                    (
+                        "Cluster "
+                        f"{highest_risk_cluster} "
+                        "contains the highest charge-off proportion, making it "
+                        "the primary target for credit monitoring."
+                    ),
+
+                    "⚠️",
+
+                    "#EF4444"
+
+                ),
+
+                lg=4
+
+            ),
+
+            dbc.Col(
+
+                insight_card(
+
+                    "Business Value",
+
+                    (
+                        "Customer segmentation enables differentiated lending "
+                        "strategies, pricing, and monitoring instead of treating "
+                        "every borrower as a single population."
+                    ),
+
+                    "💡",
+
+                    "#10B981"
+
+                ),
+
+                lg=4
+
+            )
+
+        ],
+
+        className="mt-4"
         )
 
 
