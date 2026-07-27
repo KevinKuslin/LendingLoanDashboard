@@ -5,6 +5,7 @@ import callbacks.clustering_callbacks
 import callbacks.pattern_callbacks
 import callbacks.anomaly_callbacks
 from components.navbar import navbar
+import os 
 
 app = Dash(
 
@@ -36,6 +37,13 @@ app.layout = html.Div(
 
 server = app.server
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    app.run(debug=True)
+#     app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8080)),
+        debug=False
+    )
