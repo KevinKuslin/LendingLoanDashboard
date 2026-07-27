@@ -10,7 +10,10 @@ from utils.data_loader import (
     anomaly_scatter, 
     anomaly_feature_difference, 
     top10_anomalies, 
-    anomaly_method_breakdown
+    anomaly_method_breakdown, 
+    cluster_summary,
+    cluster_category_summary,
+    cluster_anomaly_cross_reference
 )
 
 from components.insight_card import insight_card
@@ -22,7 +25,9 @@ from utils.investigation_queue import INVESTIGATION_QUEUE
 from figures.anomaly_figures import (
     create_anomaly_scatter, 
     create_anomaly_feature_chart, 
-    create_method_chart
+    create_method_chart, 
+    create_cluster_stacked_bar,
+    create_cluster_pie
 )
 
 @callback(
@@ -378,3 +383,91 @@ def update_feature_difference(top_n):
 
     return fig
 
+@callback(
+
+    Output("cluster-stacked-bar","figure"),
+
+    Output("cluster-pie","figure"),
+
+    Output("cluster-table","data"),
+
+    Output("cluster-table","columns"),
+
+    Input("cluster-dropdown","value")
+
+)
+def update_cluster_explorer(cluster):
+
+    stacked = create_cluster_stacked_bar(
+
+        cluster_category_summary
+
+    )
+
+    filtered = cluster_category_summary[
+
+        cluster_category_summary.cluster == cluster
+
+    ]
+
+    pie = create_cluster_pie(
+
+        filtered
+
+    )
+
+    severity_order = {
+        "Strong anomaly": 3,
+        "Moderate anomaly": 2,
+        "Weak anomaly": 1,
+        "Normal": 0
+    }
+
+    table = (
+        cluster_anomaly_cross_reference[
+            cluster_anomaly_cross_reference.cluster == cluster
+        ]
+        .assign(
+            severity_rank=lambda d: d["Category"].map(severity_order)
+        )
+        .sort_values(
+            by=["severity_rank", "methods_detected"],
+            ascending=[False, False]
+        )
+        .drop(columns="severity_rank")
+        [
+            [
+                "loan_amnt",
+                "annual_inc",
+                "fico_range_low",
+                "int_rate",
+                "Category",
+                "methods_detected"
+            ]
+        ]
+        .head(50)
+    )
+
+    return (
+
+        stacked,
+
+        pie,
+
+        table.to_dict("records"),
+
+        [
+
+            {
+
+                "name":i,
+
+                "id":i
+
+            }
+
+            for i in table.columns
+
+        ]
+
+    )

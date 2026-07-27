@@ -94,29 +94,13 @@ loan_max = int(
 # ==========================================================
 
 initial_status = create_status_chart()
-
-
 initial_grade = create_grade_chart()
-
-
 initial_state = create_state_chart()
-
-
-initial_loan = create_loan_chart(
-    accepted_raw
-)
-
-
+initial_loan = create_loan_chart()
 initial_interest = create_interest_chart(
     accepted_raw
 )
-
-
-initial_fico = create_fico_chart(
-    accepted_raw
-)
-
-
+initial_fico = create_fico_chart()
 
 # ==========================================================
 # LAYOUT

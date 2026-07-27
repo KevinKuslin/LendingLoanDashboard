@@ -121,6 +121,17 @@ anomaly_feature_difference = pd.read_parquet(
     ANOMALY_DIR / "anomaly_feature_difference.parquet"
 )
 
+cluster_anomaly_cross_reference = pd.read_parquet(
+    ANOMALY_DIR / "cluster_anomaly_cross_reference.parquet"
+)
+
+cluster_category_summary = pd.read_parquet(
+    ANOMALY_DIR / "cluster_category_summary.parquet"
+)
+
+cluster_summary = pd.read_parquet(
+    ANOMALY_DIR / "cluster_summary.parquet"
+)
 
 top10_anomalies = pd.read_parquet(
     ANOMALY_DIR / "top10_anomalies.parquet"
@@ -192,8 +203,8 @@ if __name__ == "__main__":
     # print(top10_anomalies)
     # print(top10_anomalies[['fico_range_low', 'dti']])
 
-    print(anomaly_feature_difference.head())
-    print(anomaly_feature_difference.columns)
+    # print(anomaly_feature_difference.head())
+    # print(anomaly_feature_difference.columns)
 
     # print(association_rules.columns.tolist())
     # print(association_rule_scatter.columns.tolist())
@@ -211,9 +222,9 @@ if __name__ == "__main__":
     # print(frequent_itemsets.head())
     # print(bin_edges.head())
 
-    # print(cluster_profiles.head())
-    # print(cluster_profiles.columns.tolist())
-    # print(cluster_profiles.shape)
+    print(cluster_anomaly_cross_reference.columns.tolist()) 
+    print(cluster_category_summary.columns.tolist()) 
+    print(cluster_summary.columns.tolist()) 
 
     # print(kmeans_visualization.shape)
     # print(dbscan_umap.shape)

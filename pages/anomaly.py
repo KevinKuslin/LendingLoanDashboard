@@ -18,6 +18,9 @@ from utils.data_loader import (
     anomaly_categories,
     anomaly_feature_difference,
     top10_anomalies,
+    cluster_anomaly_cross_reference,
+    cluster_category_summary,
+    cluster_summary
 )
 
 dash.register_page(
@@ -944,6 +947,144 @@ layout = dbc.Container(
 
             className="shadow-sm border-0 mt-4"
 
-        )
+        ), 
+
+        dbc.Card(
+
+            dbc.CardBody(
+
+                [
+
+                    html.H4(
+                        "Customer Segment × Anomaly Explorer",
+                        className="fw-bold mb-3"
+                    ),
+
+                    html.P(
+
+                        "Explore how anomaly severity is distributed across customer segments.",
+
+                        className="text-muted"
+
+                    ),
+
+                    dbc.Row(
+
+                        [
+
+                            dbc.Col(
+
+                                [
+
+                                    html.Label("Customer Segment"),
+
+                                    dcc.Dropdown(
+
+                                        id="cluster-dropdown",
+
+                                        value=0,
+
+                                        clearable=False,
+
+                                        options=[
+
+                                            {
+                                                "label":f"Cluster {i}",
+                                                "value":i
+                                            }
+
+                                            for i in sorted(
+                                                cluster_summary["cluster"].unique()
+                                            )
+
+                                        ]
+
+                                    )
+
+                                ],
+
+                                md=3
+
+                            )
+
+                        ],
+
+                        className="mb-3"
+
+                    ),
+
+                    dbc.Row(
+
+                        [
+
+                            dbc.Col(
+
+                                dcc.Graph(
+
+                                    id="cluster-stacked-bar",
+
+                                    config={
+                                        "displayModeBar":False
+                                    }
+
+                                ),
+
+                                md=7
+
+                            ),
+
+                            dbc.Col(
+
+                                dcc.Graph(
+
+                                    id="cluster-pie",
+
+                                    config={
+                                        "displayModeBar":False
+                                    }
+
+                                ),
+
+                                md=5
+
+                            )
+
+                        ]
+
+                    ),
+
+                    html.Br(),
+
+                    dash_table.DataTable(
+
+                        id="cluster-table",
+
+                        page_size=10,
+
+                        sort_action="native",
+
+                        filter_action="native",
+
+                        style_table={
+
+                            "overflowX":"auto"
+
+                        },
+
+                        style_cell={
+
+                            "textAlign":"center"
+
+                        }
+
+                    )
+
+                ]
+
+            ),
+
+            className="shadow-sm border-0 mt-4"
+
+        ),
     ]
 )

@@ -8,6 +8,7 @@ from figures.executive_figures import (
     create_state_chart,
     create_loan_chart,
     create_interest_chart,
+    create_fico_chart
 )
 
 # ==========================================================
@@ -101,6 +102,11 @@ def filter_loans(
         "figure"
     ),
 
+    Output(
+        "fico-chart",
+        "figure"
+    ),
+
     Input(
         "loan-status-filter",
         "value"
@@ -155,5 +161,6 @@ def update_executive_dashboard(
         create_grade_chart(df),
         create_state_chart(df),
         create_loan_chart(df),
-        create_interest_chart(df)
+        create_interest_chart(df),
+        create_fico_chart(df)
     )

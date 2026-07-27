@@ -20,8 +20,6 @@ def apply_theme(fig):
 
     return fig
 
-
-
 # =====================================
 # Risk Distribution
 # =====================================
@@ -302,6 +300,78 @@ def create_anomaly_category_chart(df):
         ),
 
         legend_title_text="Severity"
+
+    )
+
+    return fig
+
+def create_cluster_stacked_bar(df):
+
+    fig = px.bar(
+
+        df,
+
+        x="cluster",
+
+        y="count",
+
+        color="Category",
+
+        barmode="stack",
+
+        color_discrete_map={
+
+            "Normal":"#10B981",
+            "Weak anomaly":"#FACC15",
+            "Moderate anomaly":"#FB923C",
+            "Strong anomaly":"#EF4444"
+
+        }
+
+    )
+
+    fig.update_layout(
+
+        template="plotly_white",
+
+        xaxis_title="Customer Segment",
+
+        yaxis_title="Borrowers",
+
+        legend_title="Category"
+
+    )
+
+    return fig
+
+def create_cluster_pie(df):
+
+    fig = px.pie(
+
+        df,
+
+        names="Category",
+
+        values="count",
+
+        hole=.45,
+
+        color="Category",
+
+        color_discrete_map={
+
+            "Normal":"#10B981",
+            "Weak anomaly":"#FACC15",
+            "Moderate anomaly":"#FB923C",
+            "Strong anomaly":"#EF4444"
+
+        }
+
+    )
+
+    fig.update_layout(
+
+        template="plotly_white"
 
     )
 

@@ -206,9 +206,7 @@ def create_loan_chart(df=None):
 
     if df is None:
 
-        data = accepted_raw[
-            ["loan_amnt"]
-        ]
+        data = loan_amount_distribution.copy()
 
     else:
 
@@ -228,7 +226,9 @@ def create_loan_chart(df=None):
     )
 
 
-    return apply_dashboard_theme(fig) 
+    return apply_dashboard_theme(fig)
+
+
 
 # ==========================================================
 # Interest Rate
@@ -288,7 +288,6 @@ def create_fico_chart(df=None):
     fig.update_layout(
         title="Borrower FICO Distribution"
     )
-
 
     return apply_dashboard_theme(fig)
 
