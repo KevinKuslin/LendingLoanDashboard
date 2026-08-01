@@ -494,3 +494,5 @@ layout = html.Div([
     hero,
     html.H3("Dashboard loading...")
 ])
+
+print("Executive Page Loaded")

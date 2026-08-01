@@ -392,690 +392,697 @@ initial_hierarchy_scatter = create_hierarchy_scatter(
 # ==========================================================
 
 
-layout = dbc.Container(
+# layout = dbc.Container(
 
-    [
+#     [
 
-        hero(
-            title="Customer Segmentation Analysis",
-            subtitle=
-            "Explore borrower segments generated using K-Means, "
-            "Hierarchical Clustering, and DBSCAN to understand "
-            "customer characteristics and portfolio risk."
-        ),
+#         hero(
+#             title="Customer Segmentation Analysis",
+#             subtitle=
+#             "Explore borrower segments generated using K-Means, "
+#             "Hierarchical Clustering, and DBSCAN to understand "
+#             "customer characteristics and portfolio risk."
+#         ),
 
 
-        html.Br(),
+#         html.Br(),
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(metric_card(
-                    "🏆",
-                    "Largest Segment",
-                    "Cluster 1",
-                    "#2563EB",
-                    "largest-segment"
-                )),
+#                 dbc.Col(metric_card(
+#                     "🏆",
+#                     "Largest Segment",
+#                     "Cluster 1",
+#                     "#2563EB",
+#                     "largest-segment"
+#                 )),
 
-                dbc.Col(metric_card(
-                    "⭐",
-                    "Best Credit",
-                    "Cluster 1",
-                    "#10B981",
-                    "best-credit"
-                )),
+#                 dbc.Col(metric_card(
+#                     "⭐",
+#                     "Best Credit",
+#                     "Cluster 1",
+#                     "#10B981",
+#                     "best-credit"
+#                 )),
 
-                dbc.Col(metric_card(
-                    "⚠",
-                    "Highest Risk",
-                    "Cluster 0",
-                    "#EF4444",
-                    "highest-risk"
-                )),
+#                 dbc.Col(metric_card(
+#                     "⚠",
+#                     "Highest Risk",
+#                     "Cluster 0",
+#                     "#EF4444",
+#                     "highest-risk"
+#                 )),
 
-                dbc.Col(metric_card(
-                    "💰",
-                    "Highest Income",
-                    "Cluster 1",
-                    "#F59E0B",
-                    "highest-income"
-                ))
+#                 dbc.Col(metric_card(
+#                     "💰",
+#                     "Highest Income",
+#                     "Cluster 1",
+#                     "#F59E0B",
+#                     "highest-income"
+#                 ))
 
-            ],
+#             ],
 
-            className="g-3 mb-4"
+#             className="g-3 mb-4"
 
-        ),
+#         ),
 
 
-        # ==============================
-        # KPI CARDS
-        # ==============================
+#         # ==============================
+#         # KPI CARDS
+#         # ==============================
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        "🧩",
+#                         "🧩",
 
-                        "Customer Segments",
+#                         "Customer Segments",
 
-                        str(TOTAL_SEGMENTS),
+#                         str(TOTAL_SEGMENTS),
 
-                        "#2563EB",
+#                         "#2563EB",
 
-                        "cluster-total"
+#                         "cluster-total"
 
-                    ),
+#                     ),
 
-                    lg=3
+#                     lg=3
 
-                ),
+#                 ),
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        "🌳",
+#                         "🌳",
 
-                        "Hierarchy Categories",
+#                         "Hierarchy Categories",
 
-                        str(HIERARCHY_CATEGORIES),
+#                         str(HIERARCHY_CATEGORIES),
 
-                        "#10B981",
+#                         "#10B981",
 
-                        "hierarchy-groups"
+#                         "hierarchy-groups"
 
-                    ),
+#                     ),
 
-                    lg=3
+#                     lg=3
 
-                ),
+#                 ),
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        "📈",
+#                         "📈",
 
-                        "Features Profiled",
+#                         "Features Profiled",
 
-                        str(FEATURES_PROFILED),
+#                         str(FEATURES_PROFILED),
 
-                        "#F59E0B",
+#                         "#F59E0B",
 
-                        "profiled-features"
+#                         "profiled-features"
 
-                    ),
+#                     ),
 
-                    lg=3
+#                     lg=3
 
-                ),
+#                 ),
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        "📊",
+#                         "📊",
 
-                        "Best Silhouette",
+#                         "Best Silhouette",
 
-                        f"{BEST_SILHOUETTE:.3f}",
+#                         f"{BEST_SILHOUETTE:.3f}",
 
-                        "#7C3AED",
+#                         "#7C3AED",
 
-                        "best-silhouette"
+#                         "best-silhouette"
 
-                    ),
+#                     ),
 
-                    lg=3
+#                     lg=3
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ), 
+#         ), 
 
 
 
-        html.Hr(),
+#         html.Hr(),
 
 
-        html.H3(
-            "K-Means Optimization",
-            className="section-title"
-        ),
+#         html.H3(
+#             "K-Means Optimization",
+#             className="section-title"
+#         ),
 
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Elbow Method",
-                        initial_elbow,
-                        "kmeans-elbow"
-                    ),
+#                     chart_card(
+#                         "Elbow Method",
+#                         initial_elbow,
+#                         "kmeans-elbow"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                ),
+#                 ),
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Silhouette Score",
-                        initial_silhouette,
-                        "kmeans-silhouette"
-                    ),
+#                     chart_card(
+#                         "Silhouette Score",
+#                         initial_silhouette,
+#                         "kmeans-silhouette"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4"
+#             className="g-4"
 
-        ),
+#         ),
 
 
 
-        html.Br(),
+#         html.Br(),
 
 
 
-        html.H3(
-            "Interactive Cluster Visualization",
-            className="section-title"
-        ),
+#         html.H3(
+#             "Interactive Cluster Visualization",
+#             className="section-title"
+#         ),
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            dbc.Col(
+#             dbc.Col(
 
-                dcc.Dropdown(
+#                 dcc.Dropdown(
 
-                    id="cluster-k-selector",
+#                     id="cluster-k-selector",
 
-                    options=[
+#                     options=[
 
-                        {
-                            "label":f"K = {k}",
-                            "value":k
-                        }
+#                         {
+#                             "label":f"K = {k}",
+#                             "value":k
+#                         }
 
-                        for k in sorted(
-                            kmeans_visualization["k"].unique()
-                        )
+#                         for k in sorted(
+#                             kmeans_visualization["k"].unique()
+#                         )
 
-                    ],
+#                     ],
 
-                    value=3,
+#                     value=3,
 
-                    clearable=False,
+#                     clearable=False,
 
-                    style={
-                        "maxWidth":"250px"
-                    }
+#                     style={
+#                         "maxWidth":"250px"
+#                     }
 
-                ),
+#                 ),
 
-                width="auto"
+#                 width="auto"
 
-            ),
+#             ),
 
-            className="mb-3"
+#             className="mb-3"
 
-        ),
+#         ),
 
-        html.Br(),
+#         html.Br(),
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Interactive Cluster Explorer",
-                        initial_cluster_scatter,
-                        "cluster-scatter"
-                    ),
+#                     chart_card(
+#                         "Interactive Cluster Explorer",
+#                         initial_cluster_scatter,
+#                         "cluster-scatter"
+#                     ),
 
-                    lg=12
+#                     lg=12
 
-                )
+#                 )
 
-            ]
+#             ]
 
-        ),
+#         ),
 
 
 
-        html.Br(),
+#         html.Br(),
 
 
-        html.H3(
-            "Cluster Characteristics",
-            className="section-title"
-        ),
+#         html.H3(
+#             "Cluster Characteristics",
+#             className="section-title"
+#         ),
 
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Normalized Cluster Profiles",
-                        initial_profile,
-                        "cluster-profile"
-                    ),
+#                     chart_card(
+#                         "Normalized Cluster Profiles",
+#                         initial_profile,
+#                         "cluster-profile"
+#                     ),
 
-                    lg=12
+#                     lg=12
 
-                )
+#                 )
 
-            ]
+#             ]
 
-        ),
+#         ),
 
-        html.Br(),
+#         html.Br(),
 
-        html.H3(
-            "Hierarchical Clustering Summary",
-            className="section-title"
-        ),
+#         html.H3(
+#             "Hierarchical Clustering Summary",
+#             className="section-title"
+#         ),
 
 
-        html.P(
+#         html.P(
 
-            """
-            Hierarchical clustering was applied independently across four
-            borrower feature domains. Each domain selected its optimal number
-            of clusters using silhouette evaluation.
-            """,
+#             """
+#             Hierarchical clustering was applied independently across four
+#             borrower feature domains. Each domain selected its optimal number
+#             of clusters using silhouette evaluation.
+#             """,
 
-            className="text-muted"
+#             className="text-muted"
 
-        ),
+#         ),
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    card,
+#                     card,
 
-                    lg=3
+#                     lg=3
 
-                )
+#                 )
 
-                for card in hierarchy_cards
+#                 for card in hierarchy_cards
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ),
+#         ),
 
-        html.Br(),
+#         html.Br(),
 
-        html.H3(
-            "Hierarchical Clustering Explorer",
-            className="section-title"
-        ),
+#         html.H3(
+#             "Hierarchical Clustering Explorer",
+#             className="section-title"
+#         ),
 
-        dbc.Row(
+#         dbc.Row(
 
-            dbc.Col(
+#             dbc.Col(
 
-                dcc.Dropdown(
+#                 dcc.Dropdown(
 
-                    id="hierarchy-group-selector",
+#                     id="hierarchy-group-selector",
 
-                    options=[
-                        {
-                            "label":g,
-                            "value":g
-                        }
-                        for g in hierarchy_elbow["group"].unique()
-                    ],
+#                     options=[
+#                         {
+#                             "label":g,
+#                             "value":g
+#                         }
+#                         for g in hierarchy_elbow["group"].unique()
+#                     ],
 
-                    value=DEFAULT_GROUP,
+#                     value=DEFAULT_GROUP,
 
-                    clearable=False,
+#                     clearable=False,
 
-                    style={
-                        "maxWidth":"350px"
-                    }
+#                     style={
+#                         "maxWidth":"350px"
+#                     }
 
-                ),
+#                 ),
 
-                width="auto"
+#                 width="auto"
 
-            ),
+#             ),
 
-            className="mb-3"
+#             className="mb-3"
 
-        ),
+#         ),
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Hierarchical Elbow",
-                        initial_hierarchy_elbow,
-                        "hierarchy-elbow"
-                    ),
+#                     chart_card(
+#                         "Hierarchical Elbow",
+#                         initial_hierarchy_elbow,
+#                         "hierarchy-elbow"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                ),
+#                 ),
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Hierarchical Silhouette",
-                        initial_hierarchy_silhouette,
-                        "hierarchy-silhouette"
-                    ),
+#                     chart_card(
+#                         "Hierarchical Silhouette",
+#                         initial_hierarchy_silhouette,
+#                         "hierarchy-silhouette"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ),
+#         ),
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    dcc.Dropdown(
+#                     dcc.Dropdown(
 
-                        id="hierarchy-group",
+#                         id="hierarchy-group",
 
-                        options=[
+#                         options=[
 
-                            {
-                                "label":i.replace("_"," ").title(),
-                                "value":i
-                            }
+#                             {
+#                                 "label":i.replace("_"," ").title(),
+#                                 "value":i
+#                             }
 
-                            for i in HIERARCHY_GROUPS
+#                             for i in HIERARCHY_GROUPS
 
-                        ],
+#                         ],
 
-                        value="loan_cluster",
+#                         value="loan_cluster",
 
-                        clearable=False
+#                         clearable=False
 
-                    ),
+#                     ),
 
-                    lg=4
+#                     lg=4
 
-                ),
+#                 ),
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    dcc.Dropdown(
+#                     dcc.Dropdown(
 
-                        id="hierarchy-x",
+#                         id="hierarchy-x",
 
-                        options=[
+#                         options=[
 
-                            {
-                                "label":i.replace("_"," ").title(),
-                                "value":i
-                            }
+#                             {
+#                                 "label":i.replace("_"," ").title(),
+#                                 "value":i
+#                             }
 
-                            for i in HIERARCHY_FEATURES
+#                             for i in HIERARCHY_FEATURES
 
-                        ],
+#                         ],
 
-                        value="annual_inc",
+#                         value="annual_inc",
 
-                        clearable=False
+#                         clearable=False
 
-                    ),
+#                     ),
 
-                    lg=4
+#                     lg=4
 
-                ),
+#                 ),
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    dcc.Dropdown(
+#                     dcc.Dropdown(
 
-                        id="hierarchy-y",
+#                         id="hierarchy-y",
 
-                        options=[
+#                         options=[
 
-                            {
-                                "label":i.replace("_"," ").title(),
-                                "value":i
-                            }
+#                             {
+#                                 "label":i.replace("_"," ").title(),
+#                                 "value":i
+#                             }
 
-                            for i in HIERARCHY_FEATURES
+#                             for i in HIERARCHY_FEATURES
 
-                        ],
+#                         ],
 
-                        value="loan_amnt",
+#                         value="loan_amnt",
 
-                        clearable=False
+#                         clearable=False
 
-                    ),
+#                     ),
 
-                    lg=4
+#                     lg=4
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="mb-3"
+#             className="mb-3"
 
-        ),
+#         ),
 
-        dbc.Row(
+#         dbc.Row(
 
-            dbc.Col(
+#             dbc.Col(
 
-                chart_card(
+#                 chart_card(
 
-                    "Hierarchy Feature Explorer",
+#                     "Hierarchy Feature Explorer",
 
-                    initial_hierarchy_scatter,
+#                     initial_hierarchy_scatter,
 
-                    "hierarchy-profile"
+#                     "hierarchy-profile"
 
-                ),
+#                 ),
 
-                lg=12
+#                 lg=12
 
-            )
+#             )
 
-        ),
+#         ),
 
-        html.Br(),
+#         html.Br(),
 
-        html.H3(
+#         html.H3(
 
-            "Cluster Business Interpretation",
+#             "Cluster Business Interpretation",
 
-            className="section-title"
+#             className="section-title"
 
-        ),
+#         ),
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    card,
+#                     card,
 
-                    lg=4
+#                     lg=4
 
-                )
+#                 )
 
-                for card in cluster_business_cards
+#                 for card in cluster_business_cards
 
-            ],
+#             ],
 
-            className="g-4"
+#             className="g-4"
 
-        ),
+#         ),
 
-        html.Br(), 
+#         html.Br(), 
 
-        analysis_note_card(),
+#         analysis_note_card(),
 
-        html.Br(), 
+#         html.Br(), 
 
-        dbc.Row(
-            [
+#         dbc.Row(
+#             [
 
-                dbc.Col(
-                    dbscan_explanation_card(),
-                    lg=12
-                )
+#                 dbc.Col(
+#                     dbscan_explanation_card(),
+#                     lg=12
+#                 )
 
-            ],
-            className="mb-4"
-        ),
+#             ],
+#             className="mb-4"
+#         ),
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "DBSCAN + UMAP Projection",
-                        initial_dbscan,
-                        "dbscan-chart"
-                    ),
+#                     chart_card(
+#                         "DBSCAN + UMAP Projection",
+#                         initial_dbscan,
+#                         "dbscan-chart"
+#                     ),
 
-                    lg=12
+#                     lg=12
 
-                )
+#                 )
 
-            ]
+#             ]
 
-        ), 
+#         ), 
 
-        html.Br(),
+#         html.Br(),
 
-        dbc.Row(
+#         dbc.Row(
 
-        [
-            dbc.Col(
+#         [
+#             dbc.Col(
 
-                insight_card(
+#                 insight_card(
 
-                    "Cluster Quality",
+#                     "Cluster Quality",
 
-                    (
-                        "K-Means achieved the highest silhouette score at "
-                        "k=3, indicating three borrower groups provide the "
-                        "best balance between cohesion and separation."
-                    ),
+#                     (
+#                         "K-Means achieved the highest silhouette score at "
+#                         "k=3, indicating three borrower groups provide the "
+#                         "best balance between cohesion and separation."
+#                     ),
 
-                    "📈",
+#                     "📈",
 
-                    "#2563EB"
+#                     "#2563EB"
 
-                ),
+#                 ),
 
-                lg=4
+#                 lg=4
 
-            ),
+#             ),
 
-            dbc.Col(
+#             dbc.Col(
 
-                insight_card(
+#                 insight_card(
 
-                    "Risk Segment",
+#                     "Risk Segment",
 
-                    (
-                        "Cluster "
-                        f"{int(highest_risk_cluster)} "
-                        "contains the highest charge-off proportion, making it "
-                        "the primary target for credit monitoring."
-                    ),
+#                     (
+#                         "Cluster "
+#                         f"{int(highest_risk_cluster)} "
+#                         "contains the highest charge-off proportion, making it "
+#                         "the primary target for credit monitoring."
+#                     ),
 
-                    "⚠️",
+#                     "⚠️",
 
-                    "#EF4444"
+#                     "#EF4444"
 
-                ),
+#                 ),
 
-                lg=4
+#                 lg=4
 
-            ),
+#             ),
 
-            dbc.Col(
+#             dbc.Col(
 
-                insight_card(
+#                 insight_card(
 
-                    "Business Value",
+#                     "Business Value",
 
-                    (
-                        "Customer segmentation enables differentiated lending "
-                        "strategies, pricing, and monitoring instead of treating "
-                        "every borrower as a single population."
-                    ),
+#                     (
+#                         "Customer segmentation enables differentiated lending "
+#                         "strategies, pricing, and monitoring instead of treating "
+#                         "every borrower as a single population."
+#                     ),
 
-                    "💡",
+#                     "💡",
 
-                    "#10B981"
+#                     "#10B981"
 
-                ),
+#                 ),
 
-                lg=4
+#                 lg=4
 
-            )
+#             )
 
-        ],
+#         ],
 
-        className="mt-4"
-        )
+#         className="mt-4"
+#         )
 
 
-    ],
+#     ],
 
-    fluid=True,
-    className="py-4"
+#     fluid=True,
+#     className="py-4"
 
-)
+# )
+
+layout = html.Div([
+    hero,
+    html.H3("Clustering loaded...")
+])
+
+print("Clustering Page Loaded")
