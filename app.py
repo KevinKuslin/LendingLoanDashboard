@@ -48,12 +48,16 @@ app.layout = html.Div(
 
 )
 
+print("LAYOUT CREATED")
+
 
 # if __name__ == "__main__":
 
 #     app.run(debug=True)
 
 server = app.server
+
+print("SERVER CREATED")
 
 if __name__ == "__main__":
     app.run(
