@@ -245,3 +245,6 @@ def get_interest_rate_distribution():
         "dashboard_output",
         "interest_rate_distribution.parquet"
     )
+
+if __name__ == "__main__":
+    print(get_anomaly_scatter().shape)
