@@ -699,9 +699,11 @@ def layout():
 
                             id="anomaly-category-chart",
 
-                            figure=create_anomaly_category_chart(
-                                anomaly_categories
-                            ),
+                            # figure=create_anomaly_category_chart(
+                            #     anomaly_categories
+                            # ),
+
+                            figure=px.scatter(x=[], y=[]), 
 
                             config={
                                 "displayModeBar": False
