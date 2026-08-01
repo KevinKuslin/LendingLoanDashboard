@@ -1,5 +1,7 @@
 import plotly.express as px
 
+from utils.data_loader import get_anomaly_categories
+
 def apply_theme(fig):
 
     fig.update_layout(
@@ -261,7 +263,11 @@ def create_method_chart(df, category="All"):
     return apply_theme(fig)
 
 
-def create_anomaly_category_chart(df):
+def create_anomaly_category_chart(df = None):
+
+    if df is None:
+    
+            df = get_anomaly_categories().copy()
 
     fig = px.pie(
 
