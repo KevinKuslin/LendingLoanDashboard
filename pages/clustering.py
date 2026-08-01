@@ -1081,7 +1081,7 @@ initial_hierarchy_scatter = create_hierarchy_scatter(
 # )
 
 layout = html.Div([
-    hero,
+    hero(),
     html.H3("Clustering loaded...")
 ])
 

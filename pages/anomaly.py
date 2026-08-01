@@ -1096,7 +1096,7 @@ DETECTION_RATE = (
 # )
 
 layout = html.Div([
-    hero,
+    hero(),
     html.H3("Anomaly loading...")
 ])
 

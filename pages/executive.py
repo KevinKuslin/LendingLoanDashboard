@@ -491,7 +491,7 @@ initial_fico = create_fico_chart()
 # )
 
 layout = html.Div([
-    hero,
+    hero(),
     html.H3("Dashboard loading...")
 ])
 
