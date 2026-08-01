@@ -1,6 +1,7 @@
 from dash import html
 import dash
 import dash_bootstrap_components as dbc
+import plotly.express as px
 
 print("IMPORTING EXECUTIVE PAGE")
 
@@ -93,14 +94,19 @@ def layout():
         executive_raw["loan_amnt"].max()
     )
 
-    initial_status = create_status_chart()
-    initial_grade = create_grade_chart()
-    initial_state = create_state_chart()
-    initial_loan = create_loan_chart()
-    initial_interest = create_interest_chart(
-        executive_raw
-    )
-    initial_fico = create_fico_chart()
+    # initial_status = create_status_chart()
+    # initial_grade = create_grade_chart()
+    # initial_state = create_state_chart()
+    # initial_loan = create_loan_chart()
+    # initial_interest = create_interest_chart()
+    # initial_fico = create_fico_chart()
+
+    initial_status = px.histogram(x=[])
+    initial_grade = px.histogram(x=[])
+    initial_state = px.histogram(x=[])
+    initial_loan = px.histogram(x=[])
+    initial_interest = px.histogram(x=[])
+    initial_fico = px.histogram(x=[])
 
     return dbc.Container(
 

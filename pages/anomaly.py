@@ -1,6 +1,7 @@
 from dash import html, dcc, dash_table 
 import dash
 import dash_bootstrap_components as dbc
+import plotly.express as px
 
 from components.hero import hero
 from components.metric_card import metric_card 

@@ -1,6 +1,7 @@
 from dash import html, dcc
 import dash
 import dash_bootstrap_components as dbc
+import plotly.express as px
 
 print("IMPORTING CLUSTERING PAGE")
 
