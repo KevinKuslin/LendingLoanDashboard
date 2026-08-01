@@ -6,7 +6,7 @@ from utils.data_loader import (
     get_state_distribution,
     get_loan_amount_distribution,
     get_interest_rate_distribution,
-    get_executive_summary,
+    # get_executive_summary,
     get_executive_raw,
 )
 

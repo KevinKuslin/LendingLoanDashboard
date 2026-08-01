@@ -18,12 +18,12 @@ print("IMPORTING ANOMALY DATA")
 from utils.data_loader import (
     get_executive_summary,
     get_anomaly_scatter,
-    get_anomaly_method_counts,
+    # get_anomaly_method_counts,
     get_anomaly_categories,
-    get_anomaly_feature_difference,
+    # get_anomaly_feature_difference,
     get_top10_anomalies,
-    get_cluster_anomaly_cross_reference,
-    get_cluster_category_summary,
+    # get_cluster_anomaly_cross_reference,
+    # get_cluster_category_summary,
     get_cluster_summary,
 )
 
@@ -933,4 +933,4 @@ def layout():
 #     html.H3("Anomaly loading...")
 # ])
 
-print("=== ANOMALY PAGE LOADED")
+print("Anomaly Page Completely Rendered, Loaded. This is the last line of anomaly.py")

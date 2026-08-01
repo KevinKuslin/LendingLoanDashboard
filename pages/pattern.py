@@ -10,8 +10,8 @@ print("IMPORTING PATTERN DATA")
 from utils.data_loader import (
     get_association_rule_summary,
     get_association_rules,
-    get_top_lift_rules,
-    get_business_insights,
+    # get_top_lift_rules,
+    # get_business_insights,
     # get_frequent_itemsets,
 )
 
@@ -918,3 +918,5 @@ def layout():
         fluid=True,
         className="py-4"
     )
+
+print("Pattern Page Completely Rendered, Loaded. This is the last line of pattern.py")
