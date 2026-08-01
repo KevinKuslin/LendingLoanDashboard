@@ -20,32 +20,44 @@ print("NAVBAR LOADED")
 
 import os
 
+# app = Dash(
+
+#     __name__,
+
+#     use_pages=True,
+
+#     external_stylesheets=[dbc.themes.BOOTSTRAP]
+
+# )
+
 app = Dash(
-
     __name__,
-
-    use_pages=True,
-
     external_stylesheets=[dbc.themes.BOOTSTRAP]
-
 )
 
+# app.layout = html.Div(
+
+#     [
+
+#         navbar,
+
+#         html.Div(
+
+#             page_container,
+
+#             className="page"
+
+#         )
+
+#     ]
+
+# )
+
 app.layout = html.Div(
-
     [
-
         navbar,
-
-        html.Div(
-
-            page_container,
-
-            className="page"
-
-        )
-
+        html.H1("Test deployment")
     ]
-
 )
 
 print("LAYOUT CREATED")
