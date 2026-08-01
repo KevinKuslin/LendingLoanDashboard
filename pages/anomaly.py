@@ -46,1051 +46,1058 @@ DETECTION_RATE = (
     TOTAL_LOANS
 ) * 100
 
-layout = dbc.Container(
+# layout = dbc.Container(
 
-    [
+#     [
 
-        hero(),
+#         hero(),
 
-        html.Br(),
+#         html.Br(),
 
-        html.Div(
+#         html.Div(
 
-            [
+#             [
 
-                html.H2(
-                    "Anomaly Investigation",
-                    className="fw-bold mb-1"
-                ),
+#                 html.H2(
+#                     "Anomaly Investigation",
+#                     className="fw-bold mb-1"
+#                 ),
 
-                html.P(
-                    "Investigate unusual borrower profiles detected using multiple anomaly detection techniques.",
-                    className="text-muted mb-4"
-                )
+#                 html.P(
+#                     "Investigate unusual borrower profiles detected using multiple anomaly detection techniques.",
+#                     className="text-muted mb-4"
+#                 )
 
-            ]
+#             ]
 
-        ),
+#         ),
 
-                dbc.Row(
+#                 dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        icon="📄",
+#                         icon="📄",
 
-                        title="Total Loans",
+#                         title="Total Loans",
 
-                        value=f"{TOTAL_LOANS:,}",
+#                         value=f"{TOTAL_LOANS:,}",
 
-                        color="#2563EB",
+#                         color="#2563EB",
 
-                        component_id="total-loans"
+#                         component_id="total-loans"
 
-                    ),
+#                     ),
 
-                    lg=3,
-                    md=6,
-                    sm=12
+#                     lg=3,
+#                     md=6,
+#                     sm=12
 
-                ),
+#                 ),
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        icon="🚨",
+#                         icon="🚨",
 
-                        title="Detected Anomalies",
+#                         title="Detected Anomalies",
 
-                        value=f"{TOTAL_ANOMALIES:,}",
+#                         value=f"{TOTAL_ANOMALIES:,}",
 
-                        color="#EF4444",
+#                         color="#EF4444",
 
-                        component_id="total-anomalies"
+#                         component_id="total-anomalies"
 
-                    ),
+#                     ),
 
-                    lg=3,
-                    md=6,
-                    sm=12
+#                     lg=3,
+#                     md=6,
+#                     sm=12
 
-                ),
+#                 ),
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        icon="⚠️",
+#                         icon="⚠️",
 
-                        title="Strong Anomalies",
+#                         title="Strong Anomalies",
 
-                        value=f"{STRONG_ANOMALIES:,}",
+#                         value=f"{STRONG_ANOMALIES:,}",
 
-                        color="#F59E0B",
+#                         color="#F59E0B",
 
-                        component_id="strong-anomalies"
+#                         component_id="strong-anomalies"
 
-                    ),
+#                     ),
 
-                    lg=3,
-                    md=6,
-                    sm=12
+#                     lg=3,
+#                     md=6,
+#                     sm=12
 
-                ),
+#                 ),
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
+#                     metric_card(
 
-                        icon="📊",
+#                         icon="📊",
 
-                        title="Anomaly Detection Rate",
+#                         title="Anomaly Detection Rate",
 
-                        value=f"{DETECTION_RATE:.1f}%",
+#                         value=f"{DETECTION_RATE:.1f}%",
 
-                        color="#10B981",
+#                         color="#10B981",
 
-                        component_id="coverage-rate"
+#                         component_id="coverage-rate"
 
-                    ),
+#                     ),
 
-                    lg=3,
-                    md=6,
-                    sm=12
+#                     lg=3,
+#                     md=6,
+#                     sm=12
 
-                ),
+#                 ),
 
-            ],
+#             ],
 
-            className="g-3 mb-4"
+#             className="g-3 mb-4"
 
-        ),
+#         ),
 
-                dbc.Alert(
+#                 dbc.Alert(
 
-            [
+#             [
 
-                html.Div(
+#                 html.Div(
 
-                    [
+#                     [
 
-                        html.I(
-                            className="bi bi-info-circle-fill me-2"
-                        ),
+#                         html.I(
+#                             className="bi bi-info-circle-fill me-2"
+#                         ),
 
-                        html.Strong(
-                            "Anomaly Detection Summary"
-                        )
+#                         html.Strong(
+#                             "Anomaly Detection Summary"
+#                         )
 
-                    ],
+#                     ],
 
-                    className="mb-2"
+#                     className="mb-2"
 
-                ),
+#                 ),
 
-                html.Div(
+#                 html.Div(
 
-                    [
+#                     [
 
-                        html.Span(
-                            f"Strong: {summary['strong_anomalies']:,}"
-                        ),
+#                         html.Span(
+#                             f"Strong: {summary['strong_anomalies']:,}"
+#                         ),
 
-                        html.Span("  |  "),
+#                         html.Span("  |  "),
 
-                        html.Span(
-                            f"Moderate: {summary['moderate_anomalies']:,}"
-                        ),
+#                         html.Span(
+#                             f"Moderate: {summary['moderate_anomalies']:,}"
+#                         ),
 
-                        html.Span("  |  "),
+#                         html.Span("  |  "),
 
-                        html.Span(
-                            f"Weak: {summary['weak_anomalies']:,}"
-                        ),
+#                         html.Span(
+#                             f"Weak: {summary['weak_anomalies']:,}"
+#                         ),
 
-                        html.Span("  |  "),
+#                         html.Span("  |  "),
 
-                        html.Span(
-                            f"Detection Coverage: {DETECTION_RATE:.1f}%"
-                        )
+#                         html.Span(
+#                             f"Detection Coverage: {DETECTION_RATE:.1f}%"
+#                         )
 
-                    ]
+#                     ]
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            color="light",
+#             color="light",
 
-            className="shadow-sm border-0"
+#             className="shadow-sm border-0"
 
-        ),
+#         ),
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Anomaly Landscape Explorer",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Anomaly Landscape Explorer",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    dbc.Row(
+#                     dbc.Row(
 
-                        [
+#                         [
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label("X-Axis"),
+#                                     html.Label("X-Axis"),
 
-                                    dcc.Dropdown(
+#                                     dcc.Dropdown(
 
-                                        id="scatter-x",
+#                                         id="scatter-x",
 
-                                        value="annual_inc",
+#                                         value="annual_inc",
 
-                                        clearable=False,
+#                                         clearable=False,
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label":"Annual Income",
-                                                "value":"annual_inc"
-                                            },
+#                                             {
+#                                                 "label":"Annual Income",
+#                                                 "value":"annual_inc"
+#                                             },
 
-                                            {
-                                                "label":"Loan Amount",
-                                                "value":"loan_amnt"
-                                            },
+#                                             {
+#                                                 "label":"Loan Amount",
+#                                                 "value":"loan_amnt"
+#                                             },
 
-                                            {
-                                                "label":"FICO Score",
-                                                "value":"fico_range_low"
-                                            },
+#                                             {
+#                                                 "label":"FICO Score",
+#                                                 "value":"fico_range_low"
+#                                             },
 
-                                            {
-                                                "label":"Debt-to-Income Ratio",
-                                                "value":"dti"
-                                            },
+#                                             {
+#                                                 "label":"Debt-to-Income Ratio",
+#                                                 "value":"dti"
+#                                             },
 
-                                            {
-                                                "label":"Recoveries",
-                                                "value":"recoveries"
-                                            }
+#                                             {
+#                                                 "label":"Recoveries",
+#                                                 "value":"recoveries"
+#                                             }
 
-                                        ]
+#                                         ]
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=3
+#                                 md=3
 
-                            ),
+#                             ),
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label("Y-Axis"),
+#                                     html.Label("Y-Axis"),
 
-                                    dcc.Dropdown(
+#                                     dcc.Dropdown(
 
-                                        id="scatter-y",
+#                                         id="scatter-y",
 
-                                        value="loan_amnt",
+#                                         value="loan_amnt",
 
-                                        clearable=False,
+#                                         clearable=False,
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label":"Annual Income",
-                                                "value":"annual_inc"
-                                            },
+#                                             {
+#                                                 "label":"Annual Income",
+#                                                 "value":"annual_inc"
+#                                             },
 
-                                            {
-                                                "label":"Loan Amount",
-                                                "value":"loan_amnt"
-                                            },
+#                                             {
+#                                                 "label":"Loan Amount",
+#                                                 "value":"loan_amnt"
+#                                             },
 
-                                            {
-                                                "label":"FICO Score",
-                                                "value":"fico_range_low"
-                                            },
+#                                             {
+#                                                 "label":"FICO Score",
+#                                                 "value":"fico_range_low"
+#                                             },
 
-                                            {
-                                                "label":"Debt-to-Income Ratio",
-                                                "value":"dti"
-                                            },
+#                                             {
+#                                                 "label":"Debt-to-Income Ratio",
+#                                                 "value":"dti"
+#                                             },
 
-                                            {
-                                                "label":"Recoveries",
-                                                "value":"recoveries"
-                                            }
+#                                             {
+#                                                 "label":"Recoveries",
+#                                                 "value":"recoveries"
+#                                             }
 
-                                        ]
+#                                         ]
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=3
+#                                 md=3
 
-                            ),
+#                             ),
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label("Category"),
+#                                     html.Label("Category"),
 
-                                    dcc.Dropdown(
+#                                     dcc.Dropdown(
 
-                                        id="scatter-category",
+#                                         id="scatter-category",
 
-                                        value="All",
+#                                         value="All",
 
-                                        clearable=False,
+#                                         clearable=False,
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label":"All",
-                                                "value":"All"
-                                            },
+#                                             {
+#                                                 "label":"All",
+#                                                 "value":"All"
+#                                             },
 
-                                            {
-                                                "label":"Weak anomaly",
-                                                "value":"Weak anomaly"
-                                            },
+#                                             {
+#                                                 "label":"Weak anomaly",
+#                                                 "value":"Weak anomaly"
+#                                             },
 
-                                            {
-                                                "label":"Moderate anomaly",
-                                                "value":"Moderate anomaly"
-                                            },
+#                                             {
+#                                                 "label":"Moderate anomaly",
+#                                                 "value":"Moderate anomaly"
+#                                             },
 
-                                            {
-                                                "label":"Strong anomaly",
-                                                "value":"Strong anomaly"
-                                            }
+#                                             {
+#                                                 "label":"Strong anomaly",
+#                                                 "value":"Strong anomaly"
+#                                             }
 
-                                        ]
+#                                         ]
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=3
+#                                 md=3
 
-                            ),
+#                             ),
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label("Detected By"),
+#                                     html.Label("Detected By"),
 
-                                    dcc.Dropdown(
+#                                     dcc.Dropdown(
 
-                                        id="scatter-methods",
+#                                         id="scatter-methods",
 
-                                        value="All",
+#                                         value="All",
 
-                                        clearable=False,
+#                                         clearable=False,
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label":"All",
-                                                "value":"All"
-                                            },
+#                                             {
+#                                                 "label":"All",
+#                                                 "value":"All"
+#                                             },
 
-                                            {
-                                                "label":"1 Method",
-                                                "value":1
-                                            },
+#                                             {
+#                                                 "label":"1 Method",
+#                                                 "value":1
+#                                             },
 
-                                            {
-                                                "label":"2 Methods",
-                                                "value":2
-                                            },
+#                                             {
+#                                                 "label":"2 Methods",
+#                                                 "value":2
+#                                             },
 
-                                            {
-                                                "label":"3 Methods",
-                                                "value":3
-                                            }
+#                                             {
+#                                                 "label":"3 Methods",
+#                                                 "value":3
+#                                             }
 
-                                        ]
+#                                         ]
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=3
+#                                 md=3
 
-                            )
+#                             )
 
-                        ],
+#                         ],
 
-                        className="g-3"
+#                         className="g-3"
 
-                    ),
+#                     ),
 
-                    html.Br(),
+#                     html.Br(),
 
-                    dbc.Row(
+#                     dbc.Row(
 
-                        [
+#                         [
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                html.Div(
+#                                 html.Div(
 
-                                    id="scatter-counter",
+#                                     id="scatter-counter",
 
-                                    className="text-muted fw-semibold"
+#                                     className="text-muted fw-semibold"
 
-                                )
+#                                 )
 
-                            ),
+#                             ),
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                dbc.Button(
+#                                 dbc.Button(
 
-                                    "Reset Explorer",
+#                                     "Reset Explorer",
 
-                                    id="reset-scatter",
+#                                     id="reset-scatter",
 
-                                    color="secondary",
+#                                     color="secondary",
 
-                                    outline=True,
+#                                     outline=True,
 
-                                    size="sm"
+#                                     size="sm"
 
-                                ),
+#                                 ),
 
-                                width="auto"
+#                                 width="auto"
 
-                            )
+#                             )
 
-                        ],
+#                         ],
 
-                        className="mb-3 align-items-center"
+#                         className="mb-3 align-items-center"
 
-                    ),
+#                     ),
 
-                    dcc.Graph(
-                        id="anomaly-scatter",
-                        figure=create_anomaly_scatter(
-                            anomaly_scatter,
-                            "annual_inc",
-                            "loan_amnt"
-                        ),
-                        config={"displayModeBar": False}
-                    ), 
+#                     dcc.Graph(
+#                         id="anomaly-scatter",
+#                         figure=create_anomaly_scatter(
+#                             anomaly_scatter,
+#                             "annual_inc",
+#                             "loan_amnt"
+#                         ),
+#                         config={"displayModeBar": False}
+#                     ), 
 
-                    dbc.Alert(
-                        [
-                            html.Strong("How to interpret this visualization"),
-                            html.Br(),
-                            html.Span(
-                                "Each point represents one borrower. "
-                                "Points located farther from dense borrower clusters are more likely "
-                                "to represent unusual lending profiles. "
-                                "Colors indicate anomaly severity, while the filters allow investigation "
-                                "of different anomaly categories and detection agreement."
-                            )
-                        ],
-                        color="info",
-                        className="mt-3 mb-0"
-                    ),
+#                     dbc.Alert(
+#                         [
+#                             html.Strong("How to interpret this visualization"),
+#                             html.Br(),
+#                             html.Span(
+#                                 "Each point represents one borrower. "
+#                                 "Points located farther from dense borrower clusters are more likely "
+#                                 "to represent unusual lending profiles. "
+#                                 "Colors indicate anomaly severity, while the filters allow investigation "
+#                                 "of different anomaly categories and detection agreement."
+#                             )
+#                         ],
+#                         color="info",
+#                         className="mt-3 mb-0"
+#                     ),
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0"
+#             className="shadow-sm border-0"
 
-        ),
+#         ),
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Detection Method Comparison",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Detection Method Comparison",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    dbc.Row(
-                        [
-                            dbc.Col(
-                                [
-                                    html.Label("Anomaly Category"),
+#                     dbc.Row(
+#                         [
+#                             dbc.Col(
+#                                 [
+#                                     html.Label("Anomaly Category"),
 
-                                    dcc.Dropdown(
-                                        id="method-category",
-                                        clearable=False,
-                                        value="All",
-                                        options=[
-                                            {"label":"All", "value":"All"},
-                                            {"label":"Weak anomaly", "value":"Weak anomaly"},
-                                            {"label":"Moderate anomaly", "value":"Moderate anomaly"},
-                                            {"label":"Strong anomaly", "value":"Strong anomaly"}
-                                        ]
-                                    )
-                                ],
-                                md=4
-                            )
-                        ],
+#                                     dcc.Dropdown(
+#                                         id="method-category",
+#                                         clearable=False,
+#                                         value="All",
+#                                         options=[
+#                                             {"label":"All", "value":"All"},
+#                                             {"label":"Weak anomaly", "value":"Weak anomaly"},
+#                                             {"label":"Moderate anomaly", "value":"Moderate anomaly"},
+#                                             {"label":"Strong anomaly", "value":"Strong anomaly"}
+#                                         ]
+#                                     )
+#                                 ],
+#                                 md=4
+#                             )
+#                         ],
 
-                        className="mb-3"
+#                         className="mb-3"
 
-                    ),
+#                     ),
 
-                    dcc.Graph(
-                        id="method-chart",
-                        config={"displayModeBar": False}
-                    ),
+#                     dcc.Graph(
+#                         id="method-chart",
+#                         config={"displayModeBar": False}
+#                     ),
 
-                    html.Br(),
+#                     html.Br(),
 
-                    html.Div(
+#                     html.Div(
 
-                        id="method-insight"
+#                         id="method-insight"
 
-                    ), 
+#                     ), 
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0"
+#             className="shadow-sm border-0"
 
-        ), 
+#         ), 
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Top Investigated Anomalies",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Top Investigated Anomalies",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    dbc.Row(
+#                     dbc.Row(
 
-                        [
+#                         [
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label("Business Reason"),
+#                                     html.Label("Business Reason"),
 
-                                    dcc.Dropdown(
+#                                     dcc.Dropdown(
 
-                                        id="anomaly-reason",
+#                                         id="anomaly-reason",
 
-                                        value="All",
+#                                         value="All",
 
-                                        clearable=False,
+#                                         clearable=False,
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label": "All",
-                                                "value": "All"
-                                            },
+#                                             {
+#                                                 "label": "All",
+#                                                 "value": "All"
+#                                             },
 
-                                            *[
-                                                {
-                                                    "label": i,
-                                                    "value": i
-                                                }
+#                                             *[
+#                                                 {
+#                                                     "label": i,
+#                                                     "value": i
+#                                                 }
 
-                                                for i in sorted(
-                                                    top10_anomalies[
-                                                        "business_reason"
-                                                    ].unique()
-                                                )
+#                                                 for i in sorted(
+#                                                     top10_anomalies[
+#                                                         "business_reason"
+#                                                     ].unique()
+#                                                 )
 
-                                            ]
+#                                             ]
 
-                                        ]
+#                                         ]
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=5
+#                                 md=5
 
-                            )
+#                             )
 
-                        ],
+#                         ],
 
-                        className="mb-3"
+#                         className="mb-3"
 
-                    ),
+#                     ),
 
-                    html.Div(
+#                     html.Div(
 
-                        id="top-anomaly-cards"
+#                         id="top-anomaly-cards"
 
-                    )
+#                     )
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0"
+#             className="shadow-sm border-0"
 
-        ),
+#         ),
 
-        dbc.Alert(
+#         dbc.Alert(
 
-            [
+#             [
 
-                html.Div(
+#                 html.Div(
 
-                    [
+#                     [
 
-                        html.I(
-                            className="bi bi-lightbulb-fill"
-                        ),
+#                         html.I(
+#                             className="bi bi-lightbulb-fill"
+#                         ),
 
-                        html.Strong(
-                            "Anomaly Score Explanation"
-                        )
+#                         html.Strong(
+#                             "Anomaly Score Explanation"
+#                         )
 
-                    ],
+#                     ],
 
-                    className="mb-2"
+#                     className="mb-2"
 
-                ),
+#                 ),
 
-                html.P(
+#                 html.P(
 
-                    "Anomaly score generated by Isolation Forest. "
-                    "Lower values indicate borrower profiles that are more unusual "
-                    "compared with typical portfolio behaviour.",
+#                     "Anomaly score generated by Isolation Forest. "
+#                     "Lower values indicate borrower profiles that are more unusual "
+#                     "compared with typical portfolio behaviour.",
 
-                    className="mb-0"
+#                     className="mb-0"
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            color="info",
+#             color="info",
 
-            className="mt-3 shadow-sm border-0"
+#             className="mt-3 shadow-sm border-0"
 
-        ),
+#         ),
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Investigation Queue",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Investigation Queue",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    dbc.Row(
+#                     dbc.Row(
 
-                        [
+#                         [
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label(
-                                        "Investigation Type",
-                                        className="fw-semibold"
-                                    ),
+#                                     html.Label(
+#                                         "Investigation Type",
+#                                         className="fw-semibold"
+#                                     ),
 
-                                    dbc.RadioItems(
+#                                     dbc.RadioItems(
 
-                                        id="investigation-type",
+#                                         id="investigation-type",
 
-                                        value="risk",
+#                                         value="risk",
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label": "🚨 Potential Risk Signals",
-                                                "value": "risk"
-                                            },
+#                                             {
+#                                                 "label": "🚨 Potential Risk Signals",
+#                                                 "value": "risk"
+#                                             },
 
-                                            {
-                                                "label": "💼 Rare Legitimate Cases",
-                                                "value": "legitimate"
-                                            },
+#                                             {
+#                                                 "label": "💼 Rare Legitimate Cases",
+#                                                 "value": "legitimate"
+#                                             },
 
-                                            {
-                                                "label": "🗂 Data Quality Review",
-                                                "value": "quality"
-                                            }
+#                                             {
+#                                                 "label": "🗂 Data Quality Review",
+#                                                 "value": "quality"
+#                                             }
 
-                                        ],
+#                                         ],
 
-                                        className="mt-2"
+#                                         className="mt-2"
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=4
+#                                 md=4
 
-                            ),
+#                             ),
 
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                html.Div(
+#                                 html.Div(
 
-                                    id="investigation-panel"
+#                                     id="investigation-panel"
 
-                                ),
+#                                 ),
 
-                                md=8
+#                                 md=8
 
-                            )
+#                             )
 
-                        ]
+#                         ]
 
-                    )
+#                     )
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0 mt-4"
+#             className="shadow-sm border-0 mt-4"
 
-        ), 
+#         ), 
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Key Drivers of Anomalous Behaviour",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Key Drivers of Anomalous Behaviour",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    html.P(
-                        "Features with the largest differences between anomalous and normal borrowers.",
-                        className="text-muted"
-                    ),
+#                     html.P(
+#                         "Features with the largest differences between anomalous and normal borrowers.",
+#                         className="text-muted"
+#                     ),
 
-                    dcc.Dropdown(
+#                     dcc.Dropdown(
 
-                        id="feature-top-n",
+#                         id="feature-top-n",
 
-                        value=10,
+#                         value=10,
 
-                        clearable=False,
+#                         clearable=False,
 
-                        options=[
+#                         options=[
 
-                            {
-                                "label":"Top 5 Features",
-                                "value":5
-                            },
+#                             {
+#                                 "label":"Top 5 Features",
+#                                 "value":5
+#                             },
 
-                            {
-                                "label":"Top 10 Features",
-                                "value":10
-                            },
+#                             {
+#                                 "label":"Top 10 Features",
+#                                 "value":10
+#                             },
 
-                            {
-                                "label":"Top 15 Features",
-                                "value":15
-                            }
+#                             {
+#                                 "label":"Top 15 Features",
+#                                 "value":15
+#                             }
 
-                        ]
+#                         ]
 
-                    ),
+#                     ),
 
-                    dcc.Graph(
-                        id="feature-difference-chart"
-                    )
+#                     dcc.Graph(
+#                         id="feature-difference-chart"
+#                     )
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0 mt-4"
+#             className="shadow-sm border-0 mt-4"
 
-        ), 
+#         ), 
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Anomaly Severity Distribution",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Anomaly Severity Distribution",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    html.P(
+#                     html.P(
 
-                        "Distribution of detected anomalies based on severity classification.",
+#                         "Distribution of detected anomalies based on severity classification.",
 
-                        className="text-muted"
+#                         className="text-muted"
 
-                    ),
+#                     ),
 
-                    dcc.Graph(
+#                     dcc.Graph(
 
-                        id="anomaly-category-chart",
+#                         id="anomaly-category-chart",
 
-                        figure=create_anomaly_category_chart(
-                            anomaly_categories
-                        ),
+#                         figure=create_anomaly_category_chart(
+#                             anomaly_categories
+#                         ),
 
-                        config={
-                            "displayModeBar": False
-                        }
+#                         config={
+#                             "displayModeBar": False
+#                         }
 
-                    ),
+#                     ),
 
-                    dbc.Alert(
+#                     dbc.Alert(
 
-                        [
+#                         [
 
-                            html.Strong(
-                                "Interpretation"
-                            ),
+#                             html.Strong(
+#                                 "Interpretation"
+#                             ),
 
-                            html.Br(),
+#                             html.Br(),
 
-                            html.Span(
+#                             html.Span(
 
-                                "The distribution highlights how anomaly cases "
-                                "are distributed across severity levels. Strong anomalies "
-                                "represent the highest priority cases requiring further review, "
-                                "while weak anomalies indicate less extreme deviations."
+#                                 "The distribution highlights how anomaly cases "
+#                                 "are distributed across severity levels. Strong anomalies "
+#                                 "represent the highest priority cases requiring further review, "
+#                                 "while weak anomalies indicate less extreme deviations."
 
-                            )
+#                             )
 
-                        ],
+#                         ],
 
-                        color="info",
+#                         color="info",
 
-                        className="mt-3 mb-0"
+#                         className="mt-3 mb-0"
 
-                    )
+#                     )
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0 mt-4"
+#             className="shadow-sm border-0 mt-4"
 
-        ), 
+#         ), 
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Key Findings",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Key Findings",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    html.Ul(
+#                     html.Ul(
 
-                        [
+#                         [
 
-                            html.Li(
-                                "🚨 4.2% of borrowers were identified as anomalous based on combined anomaly detection techniques."
-                            ),
+#                             html.Li(
+#                                 "🚨 4.2% of borrowers were identified as anomalous based on combined anomaly detection techniques."
+#                             ),
 
-                            html.Li(
-                                "📌 Recoveries and recent credit behaviour showed the largest differences between anomalous and typical borrowers."
-                            ),
+#                             html.Li(
+#                                 "📌 Recoveries and recent credit behaviour showed the largest differences between anomalous and typical borrowers."
+#                             ),
 
-                            html.Li(
-                                "🔍 Isolation Forest detected the strongest multivariate anomalies by identifying unusual borrower profiles."
-                            ),
+#                             html.Li(
+#                                 "🔍 Isolation Forest detected the strongest multivariate anomalies by identifying unusual borrower profiles."
+#                             ),
 
-                            html.Li(
-                                "⚠️ Detected anomalies should be treated as investigation priorities rather than automatic rejection decisions."
-                            )
+#                             html.Li(
+#                                 "⚠️ Detected anomalies should be treated as investigation priorities rather than automatic rejection decisions."
+#                             )
 
-                        ],
+#                         ],
 
-                        className="mb-0"
+#                         className="mb-0"
 
-                    )
+#                     )
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0 mt-4"
+#             className="shadow-sm border-0 mt-4"
 
-        ), 
+#         ), 
 
-        dbc.Card(
+#         dbc.Card(
 
-            dbc.CardBody(
+#             dbc.CardBody(
 
-                [
+#                 [
 
-                    html.H4(
-                        "Customer Segment × Anomaly Explorer",
-                        className="fw-bold mb-3"
-                    ),
+#                     html.H4(
+#                         "Customer Segment × Anomaly Explorer",
+#                         className="fw-bold mb-3"
+#                     ),
 
-                    html.P(
+#                     html.P(
 
-                        "Explore how anomaly severity is distributed across customer segments.",
+#                         "Explore how anomaly severity is distributed across customer segments.",
 
-                        className="text-muted"
+#                         className="text-muted"
 
-                    ),
+#                     ),
 
-                    dbc.Row(
+#                     dbc.Row(
 
-                        [
+#                         [
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                [
+#                                 [
 
-                                    html.Label("Customer Segment"),
+#                                     html.Label("Customer Segment"),
 
-                                    dcc.Dropdown(
+#                                     dcc.Dropdown(
 
-                                        id="cluster-dropdown",
+#                                         id="cluster-dropdown",
 
-                                        value=0,
+#                                         value=0,
 
-                                        clearable=False,
+#                                         clearable=False,
 
-                                        options=[
+#                                         options=[
 
-                                            {
-                                                "label":f"Cluster {i}",
-                                                "value":i
-                                            }
+#                                             {
+#                                                 "label":f"Cluster {i}",
+#                                                 "value":i
+#                                             }
 
-                                            for i in sorted(
-                                                cluster_summary["cluster"].unique()
-                                            )
+#                                             for i in sorted(
+#                                                 cluster_summary["cluster"].unique()
+#                                             )
 
-                                        ]
+#                                         ]
 
-                                    )
+#                                     )
 
-                                ],
+#                                 ],
 
-                                md=3
+#                                 md=3
 
-                            )
+#                             )
 
-                        ],
+#                         ],
 
-                        className="mb-3"
+#                         className="mb-3"
 
-                    ),
+#                     ),
 
-                    dbc.Row(
+#                     dbc.Row(
 
-                        [
+#                         [
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                dcc.Graph(
+#                                 dcc.Graph(
 
-                                    id="cluster-stacked-bar",
+#                                     id="cluster-stacked-bar",
 
-                                    config={
-                                        "displayModeBar":False
-                                    }
+#                                     config={
+#                                         "displayModeBar":False
+#                                     }
 
-                                ),
+#                                 ),
 
-                                md=7
+#                                 md=7
 
-                            ),
+#                             ),
 
-                            dbc.Col(
+#                             dbc.Col(
 
-                                dcc.Graph(
+#                                 dcc.Graph(
 
-                                    id="cluster-pie",
+#                                     id="cluster-pie",
 
-                                    config={
-                                        "displayModeBar":False
-                                    }
+#                                     config={
+#                                         "displayModeBar":False
+#                                     }
 
-                                ),
+#                                 ),
 
-                                md=5
+#                                 md=5
 
-                            )
+#                             )
 
-                        ]
+#                         ]
 
-                    ),
+#                     ),
 
-                    html.Br(),
+#                     html.Br(),
 
-                    dash_table.DataTable(
+#                     dash_table.DataTable(
 
-                        id="cluster-table",
+#                         id="cluster-table",
 
-                        page_size=10,
+#                         page_size=10,
 
-                        sort_action="native",
+#                         sort_action="native",
 
-                        filter_action="native",
+#                         filter_action="native",
 
-                        style_table={
+#                         style_table={
 
-                            "overflowX":"auto"
+#                             "overflowX":"auto"
 
-                        },
+#                         },
 
-                        style_cell={
+#                         style_cell={
 
-                            "textAlign":"center"
+#                             "textAlign":"center"
 
-                        }
+#                         }
 
-                    )
+#                     )
 
-                ]
+#                 ]
 
-            ),
+#             ),
 
-            className="shadow-sm border-0 mt-4"
+#             className="shadow-sm border-0 mt-4"
 
-        ),
-    ]
-)
+#         ),
+#     ]
+# )
+
+layout = html.Div([
+    hero,
+    html.H3("Anomaly loading...")
+])
+
+print("=== ANOMALY PAGE LOADED")
