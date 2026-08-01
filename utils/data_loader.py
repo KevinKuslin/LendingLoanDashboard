@@ -12,12 +12,6 @@ accepted_raw = pd.read_parquet(
     DATA_DIR / "accepted_raw.parquet"
 )
 
-# Processed Dataset
-
-processed_df = pd.read_parquet(
-    DATA_DIR / "processed_lendingclub.parquet"
-)
-
 # Clustering Outputs
 
 CLUSTER_DIR = DATA_DIR / "clustering_output"
@@ -172,7 +166,6 @@ if __name__ == "__main__":
     print("All parquet files loaded successfully.\n")
 
     print("Raw Dataset:", accepted_raw.shape)
-    print("Processed Dataset:", processed_df.shape)
 
     print("Cluster Profiles:", cluster_profiles.shape)
     print("Association Rules:", association_rules.shape)
