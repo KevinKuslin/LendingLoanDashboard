@@ -109,383 +109,388 @@ initial_fico = create_fico_chart()
 # LAYOUT
 # ==========================================================
 
-layout = dbc.Container(
+# layout = dbc.Container(
 
-    [
+#     [
 
-        hero(),
+#         hero(),
 
 
-        html.Br(),
+#         html.Br(),
 
 
 
-        filter_panel(
-            loan_status_options,
-            grade_options,
-            state_options,
-            loan_min,
-            loan_max
-        ),
+#         filter_panel(
+#             loan_status_options,
+#             grade_options,
+#             state_options,
+#             loan_min,
+#             loan_max
+#         ),
 
 
-        html.Br(),
+#         html.Br(),
 
 
 
-        # ==================================================
-        # KPI SECTION
-        # ==================================================
+#         # ==================================================
+#         # KPI SECTION
+#         # ==================================================
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
-                        "👥",
-                        "Total Loans",
-                        "0",
-                        "#2563EB",
-                        "kpi-total-loans"
-                    ),
+#                     metric_card(
+#                         "👥",
+#                         "Total Loans",
+#                         "0",
+#                         "#2563EB",
+#                         "kpi-total-loans"
+#                     ),
 
-                    xl=3,
-                    md=6
+#                     xl=3,
+#                     md=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
-                        "💵",
-                        "Average Loan",
-                        "$0",
-                        "#10B981",
-                        "kpi-average-loan"
-                    ),
+#                     metric_card(
+#                         "💵",
+#                         "Average Loan",
+#                         "$0",
+#                         "#10B981",
+#                         "kpi-average-loan"
+#                     ),
 
-                    xl=3,
-                    md=6
+#                     xl=3,
+#                     md=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
-                        "📈",
-                        "Average Interest",
-                        "0%",
-                        "#7C3AED",
-                        "kpi-interest"
-                    ),
+#                     metric_card(
+#                         "📈",
+#                         "Average Interest",
+#                         "0%",
+#                         "#7C3AED",
+#                         "kpi-interest"
+#                     ),
 
-                    xl=3,
-                    md=6
+#                     xl=3,
+#                     md=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
-                        "🧩",
-                        "Customer Segments",
-                        str(TOTAL_SEGMENTS),
-                        "#F59E0B",
-                        "kpi-segments"
-                    ),
+#                     metric_card(
+#                         "🧩",
+#                         "Customer Segments",
+#                         str(TOTAL_SEGMENTS),
+#                         "#F59E0B",
+#                         "kpi-segments"
+#                     ),
 
-                    xl=3,
-                    md=6
+#                     xl=3,
+#                     md=6
 
-                ),
+#                 ),
 
-                dbc.Col(
-                    metric_card(
-                        "🔗",
-                        "Risk Patterns",
-                        f"{TOTAL_RULES:,}",
-                        "#2563EB",
-                        "kpi-risk-patterns"
-                    ),
-                    xl=3,
-                    md=6
-                ),
+#                 dbc.Col(
+#                     metric_card(
+#                         "🔗",
+#                         "Risk Patterns",
+#                         f"{TOTAL_RULES:,}",
+#                         "#2563EB",
+#                         "kpi-risk-patterns"
+#                     ),
+#                     xl=3,
+#                     md=6
+#                 ),
 
 
-                dbc.Col(
-                    metric_card(
-                        "⚡",
-                        "Highest Risk Lift",
-                        f"{MAX_LIFT:.2f}x",
-                        "#F59E0B",
-                        "kpi-highest-lift"
-                    ),
-                    xl=3,
-                    md=6
-                ), 
+#                 dbc.Col(
+#                     metric_card(
+#                         "⚡",
+#                         "Highest Risk Lift",
+#                         f"{MAX_LIFT:.2f}x",
+#                         "#F59E0B",
+#                         "kpi-highest-lift"
+#                     ),
+#                     xl=3,
+#                     md=6
+#                 ), 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
-                        "🚨",
-                        "Total Anomalies",
-                        f"{TOTAL_ANOMALIES:,}",
-                        "#EF4444",
-                        "kpi-total-anomalies"
-                    ),
+#                     metric_card(
+#                         "🚨",
+#                         "Total Anomalies",
+#                         f"{TOTAL_ANOMALIES:,}",
+#                         "#EF4444",
+#                         "kpi-total-anomalies"
+#                     ),
 
-                    xl=3,
-                    md=6
+#                     xl=3,
+#                     md=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    metric_card(
-                        "🔥",
-                        "Strong Anomalies",
-                        f"{STRONG_ANOMALIES:,}",
-                        "#DC2626",
-                        "kpi-strong-anomalies"
-                    ),
+#                     metric_card(
+#                         "🔥",
+#                         "Strong Anomalies",
+#                         f"{STRONG_ANOMALIES:,}",
+#                         "#DC2626",
+#                         "kpi-strong-anomalies"
+#                     ),
 
-                    xl=3,
-                    md=6
+#                     xl=3,
+#                     md=6
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ),
+#         ),
 
 
 
-        # ==================================================
-        # DISTRIBUTION CHARTS
-        # ==================================================
+#         # ==================================================
+#         # DISTRIBUTION CHARTS
+#         # ==================================================
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Loan Status Distribution",
-                        initial_status,
-                        "loan-status-chart"
-                    ),
+#                     chart_card(
+#                         "Loan Status Distribution",
+#                         initial_status,
+#                         "loan-status-chart"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Loan Grade Distribution",
-                        initial_grade,
-                        "grade-chart"
-                    ),
+#                     chart_card(
+#                         "Loan Grade Distribution",
+#                         initial_grade,
+#                         "grade-chart"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ),
+#         ),
 
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Top Borrower States",
-                        initial_state,
-                        "state-chart"
-                    ),
+#                     chart_card(
+#                         "Top Borrower States",
+#                         initial_state,
+#                         "state-chart"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Interest Rate Distribution",
-                        initial_interest,
-                        "interest-chart"
-                    ),
+#                     chart_card(
+#                         "Interest Rate Distribution",
+#                         initial_interest,
+#                         "interest-chart"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ),
+#         ),
 
 
 
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Loan Amount Distribution",
-                        initial_loan,
-                        "loan-chart"
-                    ),
+#                     chart_card(
+#                         "Loan Amount Distribution",
+#                         initial_loan,
+#                         "loan-chart"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    chart_card(
-                        "Borrower FICO Distribution",
-                        initial_fico,
-                        "fico-chart"
-                    ),
+#                     chart_card(
+#                         "Borrower FICO Distribution",
+#                         initial_fico,
+#                         "fico-chart"
+#                     ),
 
-                    lg=6
+#                     lg=6
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="g-4 mb-4"
+#             className="g-4 mb-4"
 
-        ),
+#         ),
 
 
 
-        # ==================================================
-        # BUSINESS INSIGHTS
-        # ==================================================
+#         # ==================================================
+#         # BUSINESS INSIGHTS
+#         # ==================================================
 
-        dbc.Row(
+#         dbc.Row(
 
-            [
+#             [
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    insight_card(
+#                     insight_card(
 
-                        "Portfolio Overview",
+#                         "Portfolio Overview",
 
-                        (
-                            "The Lending Club portfolio contains "
-                            f"{len(executive_raw):,} accepted loans. "
-                            "Borrowers are mainly distributed across "
-                            "standard credit grades, providing a broad "
-                            "view of consumer lending behavior."
-                        ),
+#                         (
+#                             "The Lending Club portfolio contains "
+#                             f"{len(executive_raw):,} accepted loans. "
+#                             "Borrowers are mainly distributed across "
+#                             "standard credit grades, providing a broad "
+#                             "view of consumer lending behavior."
+#                         ),
 
-                        "📊",
+#                         "📊",
 
-                        "#2563EB"
+#                         "#2563EB"
 
-                    ),
+#                     ),
 
-                    lg=4
+#                     lg=4
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    insight_card(
+#                     insight_card(
 
-                        "Risk Insight",
+#                         "Risk Insight",
 
-                        (
-                            "Pattern mining indicates that credit "
-                            "deterioration signals are strongly related "
-                            "to loan performance. Recoveries and recent "
-                            "FICO deterioration provide important risk "
-                            "monitoring indicators."
-                        ),
+#                         (
+#                             "Pattern mining indicates that credit "
+#                             "deterioration signals are strongly related "
+#                             "to loan performance. Recoveries and recent "
+#                             "FICO deterioration provide important risk "
+#                             "monitoring indicators."
+#                         ),
 
-                        "⚠️",
+#                         "⚠️",
 
-                        "#F59E0B"
+#                         "#F59E0B"
 
-                    ),
+#                     ),
 
-                    lg=4
+#                     lg=4
 
-                ),
+#                 ),
 
 
 
-                dbc.Col(
+#                 dbc.Col(
 
-                    insight_card(
+#                     insight_card(
 
-                        "Customer Segmentation",
+#                         "Customer Segmentation",
 
-                        (
-                            "Clustering analysis reveals different "
-                            "borrower profiles based on financial "
-                            "characteristics, allowing deeper analysis "
-                            "of lending behavior and portfolio structure."
-                        ),
+#                         (
+#                             "Clustering analysis reveals different "
+#                             "borrower profiles based on financial "
+#                             "characteristics, allowing deeper analysis "
+#                             "of lending behavior and portfolio structure."
+#                         ),
 
-                        "🧩",
+#                         "🧩",
 
-                        "#10B981"
+#                         "#10B981"
 
-                    ),
+#                     ),
 
-                    lg=4
+#                     lg=4
 
-                )
+#                 )
 
-            ],
+#             ],
 
-            className="mt-4"
+#             className="mt-4"
 
-        )
+#         )
 
 
 
-    ],
+#     ],
 
-    fluid=True,
+#     fluid=True,
 
-    className="py-4"
+#     className="py-4"
 
-)
+# )
+
+layout = html.Div([
+    hero,
+    html.H3("Dashboard loading...")
+])
