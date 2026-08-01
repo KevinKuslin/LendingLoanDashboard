@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 
 from utils.data_loader import (
-    accepted_raw,
+    executive_raw,
     cluster_profiles,
     executive_summary, 
     association_rule_summary
@@ -58,33 +58,33 @@ MAX_LIFT = float(
 )
 
 loan_status_options = sorted(
-    accepted_raw["loan_status"]
+    executive_raw["loan_status"]
     .dropna()
     .unique()
 )
 
 
 grade_options = sorted(
-    accepted_raw["grade"]
+    executive_raw["grade"]
     .dropna()
     .unique()
 )
 
 
 state_options = sorted(
-    accepted_raw["addr_state"]
+    executive_raw["addr_state"]
     .dropna()
     .unique()
 )
 
 
 loan_min = int(
-    accepted_raw["loan_amnt"].min()
+    executive_raw["loan_amnt"].min()
 )
 
 
 loan_max = int(
-    accepted_raw["loan_amnt"].max()
+    executive_raw["loan_amnt"].max()
 )
 
 
@@ -98,7 +98,7 @@ initial_grade = create_grade_chart()
 initial_state = create_state_chart()
 initial_loan = create_loan_chart()
 initial_interest = create_interest_chart(
-    accepted_raw
+    executive_raw
 )
 initial_fico = create_fico_chart()
 
@@ -404,7 +404,7 @@ layout = dbc.Container(
 
                         (
                             "The Lending Club portfolio contains "
-                            f"{len(accepted_raw):,} accepted loans. "
+                            f"{len(executive_raw):,} accepted loans. "
                             "Borrowers are mainly distributed across "
                             "standard credit grades, providing a broad "
                             "view of consumer lending behavior."

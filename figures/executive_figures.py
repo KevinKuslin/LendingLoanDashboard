@@ -7,7 +7,7 @@ from utils.data_loader import (
     loan_amount_distribution,
     interest_rate_distribution,
     executive_summary,
-    accepted_raw
+    executive_raw
 )
 
 
@@ -270,7 +270,7 @@ def create_fico_chart(df=None):
 
     if df is None:
 
-        data = accepted_raw
+        data = executive_raw
 
     else:
 

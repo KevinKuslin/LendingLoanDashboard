@@ -8,8 +8,8 @@ DATA_DIR = BASE_DIR / "data"
 
 # Raw Dataset
 
-accepted_raw = pd.read_parquet(
-    DATA_DIR / "accepted_raw.parquet"
+executive_raw = pd.read_parquet(
+    DATA_DIR / "executive_raw.parquet"
 )
 
 # Clustering Outputs
@@ -42,11 +42,6 @@ hierarchy_elbow = pd.read_parquet(
 
 hierarchy_silhouette = pd.read_parquet(
     CLUSTER_DIR / "hierarchy_silhouette.parquet"
-)
-
-# Full dataset (2.26M rows)
-hierarchy_group_clusters_full = pd.read_parquet(
-    CLUSTER_DIR / "hierarchy_group_clusters_full.parquet"
 )
 
 # Sampled dataset (50k rows)
@@ -164,12 +159,6 @@ interest_rate_distribution = pd.read_parquet(
 if __name__ == "__main__":
 
     print("All parquet files loaded successfully.\n")
-
-    print("Raw Dataset:", accepted_raw.shape)
-
-    print("Cluster Profiles:", cluster_profiles.shape)
-    print("Association Rules:", association_rules.shape)
-    print("Anomaly Scatter:", anomaly_scatter.shape) 
 
     # print(executive_summary.columns.tolist())
     # print(anomaly_method_counts.columns.tolist())
