@@ -1,15 +1,14 @@
 import plotly.express as px
 
 from utils.data_loader import (
-    loan_status_distribution,
-    grade_distribution,
-    state_distribution,
-    loan_amount_distribution,
-    interest_rate_distribution,
-    executive_summary,
-    executive_raw
+    get_loan_status_distribution,
+    get_grade_distribution,
+    get_state_distribution,
+    get_loan_amount_distribution,
+    get_interest_rate_distribution,
+    get_executive_summary,
+    get_executive_raw,
 )
-
 
 # ==========================================================
 # Theme
@@ -61,7 +60,7 @@ def create_status_chart(df=None):
 
     if df is None:
 
-        data = loan_status_distribution.copy()
+        data = get_loan_status_distribution().copy()
 
     else:
 
@@ -110,7 +109,7 @@ def create_grade_chart(df=None):
 
     if df is None:
 
-        data = grade_distribution.copy()
+        data = get_grade_distribution().copy()
 
     else:
 
@@ -154,7 +153,7 @@ def create_state_chart(df=None):
 
     if df is None:
 
-        data = state_distribution.copy()
+        data = get_state_distribution().copy()
 
         data = (
             data
@@ -206,7 +205,7 @@ def create_loan_chart(df=None):
 
     if df is None:
 
-        data = loan_amount_distribution.copy()
+        data = get_loan_amount_distribution().copy()
 
     else:
 
@@ -238,7 +237,7 @@ def create_interest_chart(df=None):
 
     if df is None:
 
-        data = interest_rate_distribution.copy()
+        data = get_interest_rate_distribution().copy()
 
     else:
 
@@ -269,11 +268,8 @@ def create_interest_chart(df=None):
 def create_fico_chart(df=None):
 
     if df is None:
-
-        data = executive_raw
-
+        data = get_executive_raw().copy()
     else:
-
         data = df
 
 
@@ -288,59 +284,6 @@ def create_fico_chart(df=None):
     fig.update_layout(
         title="Borrower FICO Distribution"
     )
-
-    return apply_dashboard_theme(fig)
-
-
-
-# ==========================================================
-# Anomaly
-# ==========================================================
-
-def create_anomaly_chart(df=None):
-
-    summary = executive_summary
-
-
-    counts = {
-
-        "Strong":
-            int(summary["strong_anomalies"].iloc[0]),
-
-        "Moderate":
-            int(summary["moderate_anomalies"].iloc[0]),
-
-        "Weak":
-            int(summary["weak_anomalies"].iloc[0])
-
-    }
-
-
-    fig = px.pie(
-
-        names=list(counts.keys()),
-
-        values=list(counts.values()),
-
-        hole=0.60,
-
-        color_discrete_sequence=[
-
-            "#EF4444",
-
-            "#F59E0B",
-
-            "#3B82F6"
-
-        ]
-
-    )
-
-
-    fig.update_layout(
-        title="Anomaly Categories"
-    )
-
 
     return apply_dashboard_theme(fig)
 

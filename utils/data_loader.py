@@ -1,213 +1,247 @@
 from pathlib import Path
 import pandas as pd
+from functools import lru_cache 
 
 # Base Directory
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 
+def load_parquet(*parts):
+    return pd.read_parquet(DATA_DIR.joinpath(*parts))
+
+
+# ==========================================================
 # Raw Dataset
+# ==========================================================
 
-executive_raw = pd.read_parquet(
-    DATA_DIR / "executive_raw.parquet"
-)
+@lru_cache(maxsize=1)
+def get_executive_raw():
+    return load_parquet("executive_raw.parquet")
 
+
+# ==========================================================
 # Clustering Outputs
+# ==========================================================
 
-CLUSTER_DIR = DATA_DIR / "clustering_output"
+@lru_cache(maxsize=1)
+def get_cluster_profiles():
+    return load_parquet(
+        "clustering_output",
+        "cluster_profiles.parquet"
+    )
 
-cluster_profiles = pd.read_parquet(
-    CLUSTER_DIR / "cluster_profiles.parquet"
-)
+@lru_cache(maxsize=1)
+def get_kmeans_elbow():
+    return load_parquet(
+        "clustering_output",
+        "kmeans_elbow.parquet"
+    )
 
-kmeans_elbow = pd.read_parquet(
-    CLUSTER_DIR / "kmeans_elbow.parquet"
-)
+@lru_cache(maxsize=1)
+def get_kmeans_silhouette():
+    return load_parquet(
+        "clustering_output",
+        "kmeans_silhouette.parquet"
+    )
 
-kmeans_silhouette = pd.read_parquet(
-    CLUSTER_DIR / "kmeans_silhouette.parquet"
-)
+@lru_cache(maxsize=1)
+def get_kmeans_visualization():
+    return load_parquet(
+        "clustering_output",
+        "kmeans_visualization.parquet"
+    )
 
-kmeans_visualization = pd.read_parquet(
-    CLUSTER_DIR / "kmeans_visualization.parquet"
-)
+@lru_cache(maxsize=1)
+def get_dbscan_umap():
+    return load_parquet(
+        "clustering_output",
+        "dbscan_umap.parquet"
+    )
 
-dbscan_umap = pd.read_parquet(
-    CLUSTER_DIR / "dbscan_umap.parquet"
-)
+@lru_cache(maxsize=1)
+def get_hierarchy_elbow():
+    return load_parquet(
+        "clustering_output",
+        "hierarchy_elbow.parquet"
+    )
 
-hierarchy_elbow = pd.read_parquet(
-    CLUSTER_DIR / "hierarchy_elbow.parquet"
-)
+@lru_cache(maxsize=1)
+def get_hierarchy_silhouette():
+    return load_parquet(
+        "clustering_output",
+        "hierarchy_silhouette.parquet"
+    )
 
-hierarchy_silhouette = pd.read_parquet(
-    CLUSTER_DIR / "hierarchy_silhouette.parquet"
-)
+@lru_cache(maxsize=1)
+def get_hierarchy_group_clusters_visualization():
+    return load_parquet(
+        "clustering_output",
+        "hierarchy_group_clusters_visualization.parquet"
+    )
 
-# Sampled dataset (50k rows)
-hierarchy_group_clusters_visualization = pd.read_parquet(
-    CLUSTER_DIR / "hierarchy_group_clusters_visualization.parquet"
-)
-
+# ==========================================================
 # Pattern Outputs
+# ==========================================================
 
-PATTERN_DIR = DATA_DIR / "pattern_output"
+@lru_cache(maxsize=1)
+def get_association_rule_summary():
+    return load_parquet(
+        "pattern_output",
+        "association_rule_summary.parquet"
+    )
 
-association_rule_summary = pd.read_parquet(
-    PATTERN_DIR / "association_rule_summary.parquet"
-)
+@lru_cache(maxsize=1)
+def get_association_rules():
+    return load_parquet(
+        "pattern_output",
+        "association_rules.parquet"
+    )
 
-pattern_summary = association_rule_summary.iloc[0]
+@lru_cache(maxsize=1)
+def get_association_rule_scatter():
+    return load_parquet(
+        "pattern_output",
+        "association_rule_scatter.parquet"
+    )
 
-association_rules = pd.read_parquet(
-    PATTERN_DIR / "association_rules.parquet"
-)
+@lru_cache(maxsize=1)
+def get_top_lift_rules():
+    return load_parquet(
+        "pattern_output",
+        "top_lift_rules.parquet"
+    )
 
-association_rule_scatter = pd.read_parquet(
-    PATTERN_DIR / "association_rule_scatter.parquet"
-)
+@lru_cache(maxsize=1)
+def get_frequent_itemsets():
+    return load_parquet(
+        "pattern_output",
+        "frequent_itemsets.parquet"
+    )
 
-top_lift_rules = pd.read_parquet(
-    PATTERN_DIR / "top_lift_rules.parquet"
-)
+@lru_cache(maxsize=1)
+def get_bin_edges():
+    return load_parquet(
+        "pattern_output",
+        "bin_edges.parquet"
+    )
 
-frequent_itemsets = pd.read_parquet(
-    PATTERN_DIR / "frequent_itemsets.parquet"
-)
+@lru_cache(maxsize=1)
+def get_business_insights():
+    return load_parquet(
+        "pattern_output",
+        "business_insights.parquet"
+    )
 
-bin_edges = pd.read_parquet(
-    PATTERN_DIR / "bin_edges.parquet"
-)
-
-business_insights = pd.read_parquet(
-    PATTERN_DIR / "business_insights.parquet"
-)
-
+# ==========================================================
 # Anomaly Outputs
-
-ANOMALY_DIR = DATA_DIR / "anomaly_output"
-
-executive_summary = pd.read_parquet(
-    ANOMALY_DIR / "executive_summary.parquet"
-)
-
-anomaly_method_counts = pd.read_parquet(
-    ANOMALY_DIR / "anomaly_method_counts.parquet"
-)
-
-
-anomaly_categories = pd.read_parquet(
-    ANOMALY_DIR / "anomaly_categories.parquet"
-)
-
-
-anomaly_scatter = pd.read_parquet(
-    ANOMALY_DIR / "anomaly_scatter.parquet"
-)
-
-
-anomaly_feature_difference = pd.read_parquet(
-    ANOMALY_DIR / "anomaly_feature_difference.parquet"
-)
-
-cluster_anomaly_cross_reference = pd.read_parquet(
-    ANOMALY_DIR / "cluster_anomaly_cross_reference.parquet"
-)
-
-cluster_category_summary = pd.read_parquet(
-    ANOMALY_DIR / "cluster_category_summary.parquet"
-)
-
-cluster_summary = pd.read_parquet(
-    ANOMALY_DIR / "cluster_summary.parquet"
-)
-
-top10_anomalies = pd.read_parquet(
-    ANOMALY_DIR / "top10_anomalies.parquet"
-)
-
-anomaly_method_breakdown = pd.read_parquet(
-    ANOMALY_DIR / "anomaly_method_breakdown.parquet"
-)
-
-# ==========================================================
-# Dashboard Output
 # ==========================================================
 
-loan_status_distribution = pd.read_parquet(
-    DATA_DIR / "dashboard_output" / "loan_status_distribution.parquet"
-)
+@lru_cache(maxsize=1)
+def get_executive_summary():
+    return load_parquet(
+        "anomaly_output",
+        "executive_summary.parquet"
+    )
 
-grade_distribution = pd.read_parquet(
-    DATA_DIR / "dashboard_output" / "grade_distribution.parquet"
-)
+@lru_cache(maxsize=1)
+def get_anomaly_method_counts():
+    return load_parquet(
+        "anomaly_output",
+        "anomaly_method_counts.parquet"
+    )
 
-state_distribution = pd.read_parquet(
-    DATA_DIR / "dashboard_output" / "state_distribution.parquet"
-)
+@lru_cache(maxsize=1)
+def get_anomaly_categories():
+    return load_parquet(
+        "anomaly_output",
+        "anomaly_categories.parquet"
+    )
 
-loan_amount_distribution = pd.read_parquet(
-    DATA_DIR / "dashboard_output" / "loan_amount_distribution.parquet"
-)
+@lru_cache(maxsize=1)
+def get_anomaly_scatter():
+    return load_parquet(
+        "anomaly_output",
+        "anomaly_scatter.parquet"
+    )
 
-interest_rate_distribution = pd.read_parquet(
-    DATA_DIR / "dashboard_output" / "interest_rate_distribution.parquet"
-)
+@lru_cache(maxsize=1)
+def get_anomaly_feature_difference():
+    return load_parquet(
+        "anomaly_output",
+        "anomaly_feature_difference.parquet"
+    )
 
-# Quick Check
+@lru_cache(maxsize=1)
+def get_cluster_anomaly_cross_reference():
+    return load_parquet(
+        "anomaly_output",
+        "cluster_anomaly_cross_reference.parquet"
+    )
 
-if __name__ == "__main__":
+@lru_cache(maxsize=1)
+def get_cluster_category_summary():
+    return load_parquet(
+        "anomaly_output",
+        "cluster_category_summary.parquet"
+    )
 
-    print("All parquet files loaded successfully.\n")
+@lru_cache(maxsize=1)
+def get_cluster_summary():
+    return load_parquet(
+        "anomaly_output",
+        "cluster_summary.parquet"
+    )
 
-    # print(executive_summary.columns.tolist())
-    # print(anomaly_method_counts.columns.tolist())
-    # print(anomaly_categories.columns.tolist())
-    # print(anomaly_scatter.columns.tolist())
-    # print(anomaly_feature_difference.columns.tolist())
+@lru_cache(maxsize=1)
+def get_top10_anomalies():
+    return load_parquet(
+        "anomaly_output",
+        "top10_anomalies.parquet"
+    )
 
-    # print(executive_summary.head())
-    # print(anomaly_method_counts.head())
-    # print(anomaly_categories.head())
-    # print(anomaly_scatter.head())
-    # print(anomaly_feature_difference.head())
+@lru_cache(maxsize=1)
+def get_anomaly_method_breakdown():
+    return load_parquet(
+        "anomaly_output",
+        "anomaly_method_breakdown.parquet"
+    )
 
-    # print(executive_summary.shape)
-    # print(anomaly_method_counts.shape)
-    # print(anomaly_categories.shape)
-    # print(anomaly_scatter.shape)
-    # print(anomaly_feature_difference.shape)
+# ==========================================================
+# Dashboard Outputs
+# ==========================================================
 
-    # print(anomaly_method_breakdown.columns)
-    # print(anomaly_method_breakdown.head())
+@lru_cache(maxsize=1)
+def get_loan_status_distribution():
+    return load_parquet(
+        "dashboard_output",
+        "loan_status_distribution.parquet"
+    )
 
-    # print(top10_anomalies.columns.tolist()) 
-    # print(top10_anomalies)
-    # print(top10_anomalies[['fico_range_low', 'dti']])
+@lru_cache(maxsize=1)
+def get_grade_distribution():
+    return load_parquet(
+        "dashboard_output",
+        "grade_distribution.parquet"
+    )
 
-    # print(anomaly_feature_difference.head())
-    # print(anomaly_feature_difference.columns)
+@lru_cache(maxsize=1)
+def get_state_distribution():
+    return load_parquet(
+        "dashboard_output",
+        "state_distribution.parquet"
+    )
 
-    # print(association_rules.columns.tolist())
-    # print(association_rule_scatter.columns.tolist())
-    # print(association_rule_summary.columns.tolist())
-    # print(top_lift_rules.columns.tolist())
-    # print(business_insights.columns.tolist())
-    # print(frequent_itemsets.columns.tolist())
-    # print(bin_edges.columns.tolist())
+@lru_cache(maxsize=1)
+def get_loan_amount_distribution():
+    return load_parquet(
+        "dashboard_output",
+        "loan_amount_distribution.parquet"
+    )
 
-    # print(association_rules.head())
-    # print(association_rule_scatter.head())
-    # print(association_rule_summary.head())
-    # print(top_lift_rules.head())
-    # print(business_insights.head())
-    # print(frequent_itemsets.head())
-    # print(bin_edges.head())
-
-    print(cluster_anomaly_cross_reference.columns.tolist()) 
-    print(cluster_category_summary.columns.tolist()) 
-    print(cluster_summary.columns.tolist()) 
-
-    # print(kmeans_visualization.shape)
-    # print(dbscan_umap.shape)
-    # print(hierarchy_group_clusters.shape)
+@lru_cache(maxsize=1)
+def get_interest_rate_distribution():
+    return load_parquet(
+        "dashboard_output",
+        "interest_rate_distribution.parquet"
+    )

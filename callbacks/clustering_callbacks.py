@@ -1,10 +1,10 @@
 from dash import callback, Input, Output
 
 from utils.data_loader import (
-    kmeans_visualization,
-    hierarchy_group_clusters_visualization,
-    hierarchy_elbow,
-    hierarchy_silhouette
+    get_kmeans_visualization,
+    get_hierarchy_group_clusters_visualization,
+    get_hierarchy_elbow,
+    get_hierarchy_silhouette,
 )
 
 from figures.clustering_figures import (
@@ -25,7 +25,7 @@ from figures.clustering_figures import (
 def update_cluster_scatter(k):
 
     return create_cluster_scatter(
-        kmeans_visualization,
+        get_kmeans_visualization(),
         k
     )
 
@@ -47,7 +47,7 @@ def update_hierarchy(
 ):
 
     return create_hierarchy_scatter(
-        hierarchy_group_clusters_visualization,
+        get_hierarchy_group_clusters_visualization(),
         group,
         x,
         y
@@ -66,12 +66,12 @@ def update_hierarchy(
 def update_hierarchy_evaluation(group):
 
     elbow = create_hierarchy_elbow_chart(
-        hierarchy_elbow,
+        get_hierarchy_elbow(),
         group
     )
 
     silhouette = create_hierarchy_silhouette_chart(
-        hierarchy_silhouette,
+        get_hierarchy_silhouette(),
         group
     )
 

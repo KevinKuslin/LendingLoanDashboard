@@ -28,42 +28,30 @@ def create_support_confidence_scatter(
     ]
 
     fig = px.scatter(
-
         plot_df,
-
         x="support",
         y="confidence",
-
         color=color_by,
         size=size_by,
-
         size_max=30,
-
         color_continuous_scale="Turbo",
-
         hover_data={
-
             "IF":True,
             "THEN":True,
             "support":":.2%",
             "confidence":":.2%",
             "lift":":.2f"
-
         }
-
     )
 
     fig.update_traces(
 
         marker=dict(
-
             opacity=0.82,
-
             line=dict(
                 width=1,
                 color="white"
             )
-
         ),
 
         hovertemplate=
@@ -87,24 +75,17 @@ def create_support_confidence_scatter(
     )
 
     fig.update_layout(
-
         template="plotly_white",
-
         height=600,
-
         xaxis_title="Support",
-
         yaxis_title="Confidence",
-
         coloraxis_colorbar_title="Lift",
-
         margin=dict(
             l=30,
             r=30,
             t=60,
             b=30
         )
-
     )
 
     # ----------------------------
@@ -112,27 +93,17 @@ def create_support_confidence_scatter(
     # ----------------------------
 
     fig.add_vline(
-
         x=0.05,
-
         line_dash="dash",
-
         line_color="gray",
-
         opacity=0.5
-
     )
 
     fig.add_hline(
-
         y=0.50,
-
         line_dash="dash",
-
         line_color="gray",
-
         opacity=0.5
-
     )
 
     return fig
@@ -175,63 +146,41 @@ def create_frequent_itemsets_chart(df):
     top["support_percent"] = top["support"] * 100
 
     fig = px.bar(
-
         top,
-
         x="support_percent",
-
         y="itemset",
-
         orientation="h",
-
         text="support_percent",
-
         color="support_percent",
-
         color_continuous_scale="Blues"
-
     )
 
     fig.update_traces(
-
         texttemplate="%{text:.1f}%",
-
         textposition="outside",
-
         hovertemplate=(
             "<b>%{y}</b><br>"
             "Support: %{x:.1f}%<extra></extra>"
         )
-
     )
 
     fig.update_layout(
-
         yaxis_title="",
-
         xaxis_title="Support (%)",
-
         coloraxis_showscale=False,
-
         height=500,
-
         margin=dict(
             l=10,
             r=20,
             t=20,
             b=20
         ),
-
         plot_bgcolor="white",
-
         paper_bgcolor="white"
-
     )
 
     fig.update_yaxes(
-
         categoryorder="total ascending"
-
     )
 
     return fig

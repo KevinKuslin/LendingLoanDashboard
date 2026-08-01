@@ -2,18 +2,17 @@ from dash import callback, Input, Output, html, ctx
 import dash_bootstrap_components as dbc
 import plotly.express as px 
 
-
 from utils.data_loader import (
-    executive_summary, 
-    anomaly_method_counts, 
-    anomaly_categories, 
-    anomaly_scatter, 
-    anomaly_feature_difference, 
-    top10_anomalies, 
-    anomaly_method_breakdown, 
-    cluster_summary,
-    cluster_category_summary,
-    cluster_anomaly_cross_reference
+    # get_executive_summary,
+    # get_anomaly_method_counts,
+    # get_anomaly_categories,
+    get_anomaly_scatter,
+    get_anomaly_feature_difference,
+    get_top10_anomalies,
+    get_anomaly_method_breakdown,
+    # get_cluster_summary,
+    get_cluster_category_summary,
+    get_cluster_anomaly_cross_reference,
 )
 
 from components.insight_card import insight_card
@@ -73,7 +72,7 @@ def update_anomaly_scatter(
 
 ):
 
-    df = anomaly_scatter.copy()
+    df = get_anomaly_scatter().copy()
 
     if category != "All":
 
@@ -174,7 +173,7 @@ def update_method_chart(category):
 
     return (
         create_method_chart(
-            anomaly_method_breakdown,
+            get_anomaly_method_breakdown(),
             category
         ),
 
@@ -191,7 +190,7 @@ def update_method_chart(category):
 )
 def update_top_anomalies(reason):
 
-    df = top10_anomalies.copy()
+    df = get_top10_anomalies().copy()
 
     if reason != "All":
         df = df[
@@ -362,7 +361,7 @@ def update_investigation_panel(queue_type):
 
 def update_feature_difference(top_n):
 
-    df = anomaly_feature_difference.head(top_n)
+    df = get_anomaly_feature_difference().head(top_n)
 
     fig = px.bar(
 
@@ -398,16 +397,17 @@ def update_feature_difference(top_n):
 )
 def update_cluster_explorer(cluster):
 
+    cluster_category_summary = get_cluster_category_summary()
+    cluster_anomaly_cross_reference = (
+        get_cluster_anomaly_cross_reference()
+    )
+
     stacked = create_cluster_stacked_bar(
-
         cluster_category_summary
-
     )
 
     filtered = cluster_category_summary[
-
         cluster_category_summary.cluster == cluster
-
     ]
 
     pie = create_cluster_pie(

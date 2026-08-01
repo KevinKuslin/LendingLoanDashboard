@@ -1,16 +1,21 @@
 from dash import callback, Input, Output
 
 from utils.data_loader import (
-    association_rules,
-    association_rule_summary, 
-    association_rule_scatter
+    get_association_rules,
+    get_association_rule_summary,
+    get_association_rule_scatter,
+    get_frequent_itemsets,
 )
 
 from figures.pattern_figures import (
-    create_support_confidence_scatter
+    create_support_confidence_scatter, 
+    create_frequent_itemsets_chart
 )
 
-pattern_summary = association_rule_summary.iloc[0]
+pattern_summary = (
+    get_association_rule_summary()
+    .iloc[0]
+)
 
 
 # =====================================================
@@ -42,7 +47,7 @@ def update_rules(
 
 ):
 
-    df = association_rules.copy()
+    df = get_association_rules()
 
     # -------------------------
     # Apply dropdown filters
@@ -193,11 +198,29 @@ def update_support_confidence(
 
     return create_support_confidence_scatter(
 
-        association_rule_scatter,
+        get_association_rule_scatter(),
         min_lift,
         if_rule,
         then_rule, 
         color_by,
         size_by
 
+    )
+
+from dash import callback, Input, Output
+
+@callback(
+    Output(
+        "frequent-itemsets-chart",
+        "figure"
+    ),
+    Input(
+        "frequent-itemsets-chart",
+        "id"
+    )
+)
+def load_frequent_itemsets_chart(_):
+
+    return create_frequent_itemsets_chart(
+        get_frequent_itemsets()
     )

@@ -1,6 +1,6 @@
 from dash import callback, Input, Output
 
-from utils.data_loader import executive_raw
+from utils.data_loader import get_executive_raw
 
 from figures.executive_figures import (
     create_status_chart,
@@ -22,8 +22,7 @@ def filter_loans(
     loan_range
 ):
     
-    df = executive_raw
-
+    df = get_executive_raw().copy()
 
     if loan_status != "All":
 
@@ -31,13 +30,11 @@ def filter_loans(
             df["loan_status"] == loan_status
         ]
 
-
     if grade != "All":
 
         df = df[
             df["grade"] == grade
         ]
-
 
     if state != "All":
 
