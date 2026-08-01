@@ -5,6 +5,8 @@ import dash_bootstrap_components as dbc
 from components.metric_card import metric_card
 from components.hero import hero
 
+print("IMPORTING PATTERN DATA")
+
 from utils.data_loader import (
     association_rule_summary,
     association_rules, 
@@ -21,6 +23,8 @@ from utils.pattern_business_insights import (
 
 from utils.pattern_insights import pattern_insights
 from figures.pattern_figures import create_frequent_itemsets_chart
+
+print("PATTERN DATA LOADED")
 
 dash.register_page(
     __name__,

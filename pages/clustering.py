@@ -2,6 +2,8 @@ from dash import html, dcc
 import dash
 import dash_bootstrap_components as dbc
 
+print("IMPORTING CLUSTERING PAGE")
+
 from utils.data_loader import (
     cluster_profiles,
     kmeans_elbow,
@@ -22,6 +24,8 @@ from components.hierarchy_summary_card import hierarchy_summary_card
 from components.analysis_note_card import analysis_note_card
 from components.card import dbscan_explanation_card
 
+print("IMPORTING CLUSTERING FIGURES")
+
 from figures.clustering_figures import (
     create_elbow_chart,
     create_silhouette_chart,
@@ -35,13 +39,13 @@ from figures.clustering_figures import (
     create_dbscan_umap_chart
 )
 
+print("CLUSTERING DATA LOADED")
+
 dash.register_page(
     __name__,
     path="/clustering",
     name="Customer Segmentation"
 )
-
-
 
 # ==========================================================
 # STATIC METRICS

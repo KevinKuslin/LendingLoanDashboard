@@ -6,10 +6,14 @@ from components.hero import hero
 from components.metric_card import metric_card 
 from components.anomaly_case_card import anomaly_case_card
 
+print("IMPORTING ANOMALY FIGURES")
+
 from figures.anomaly_figures import (
     create_anomaly_scatter,
     create_anomaly_category_chart
 )
+
+print("IMPORTING ANOMALY DATA")
 
 from utils.data_loader import (
     executive_summary,
@@ -22,6 +26,8 @@ from utils.data_loader import (
     cluster_category_summary,
     cluster_summary
 )
+
+print("ANOMALY DATA LOADED")
 
 dash.register_page(
     __name__,

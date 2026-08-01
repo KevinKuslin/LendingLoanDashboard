@@ -2,6 +2,7 @@ from dash import html
 import dash
 import dash_bootstrap_components as dbc
 
+print("IMPORTING EXECUTIVE PAGE")
 
 from utils.data_loader import (
     executive_raw,
@@ -10,6 +11,7 @@ from utils.data_loader import (
     association_rule_summary
 )
 
+print("IMPORTING EXECUTIVE FIGURES")
 
 from figures.executive_figures import (
     create_status_chart,
@@ -20,6 +22,7 @@ from figures.executive_figures import (
     create_fico_chart,
 )
 
+print("EXECUTIVE DATA LOADED")
 
 from components.hero import hero
 from components.metric_card import metric_card
